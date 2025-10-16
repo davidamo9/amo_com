@@ -21,9 +21,7 @@ export function Contact() {
     setStatus("loading");
 
     try {
-      const formspreeEndpoint = "https://formspree.io/f/xgvnrdkj";
-
-      const response = await fetch(formspreeEndpoint, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
