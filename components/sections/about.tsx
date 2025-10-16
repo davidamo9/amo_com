@@ -24,24 +24,24 @@ export function About() {
 
           <div className="glass rounded-2xl p-8 md:p-12">
             <p className="text-lg text-muted-foreground mb-6">
-              I&apos;m a passionate Full Stack Developer with a love for creating
-              beautiful, functional, and user-centered digital experiences. With
-              expertise in modern web technologies, I specialize in building
-              responsive web applications that solve real-world problems.
+              I&apos;m a Robotics Engineer with a Master&apos;s degree in Robotics, specializing in
+              building AI systems for autonomous perception and decision-making. My work focuses
+              on creating intelligent systems that can understand, reason, and act in complex
+              environments.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6">
-              My journey in software development started with a curiosity about
-              how things work on the web. Since then, I&apos;ve worked on various
-              projects ranging from small business websites to complex web
-              applications, always striving to write clean, maintainable code.
+              My expertise spans agentic workflows, RAG (Retrieval-Augmented Generation) pipelines,
+              and semantic search systems. I combine deep learning, computer vision, and natural
+              language processing to build cutting-edge AI solutions that push the boundaries of
+              what&apos;s possible in autonomous systems.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6">
-              When I&apos;m not coding, you&apos;ll find me exploring new technologies,
-              contributing to open-source projects, or sharing knowledge with the
-              developer community. I believe in continuous learning and always
-              staying up-to-date with the latest industry trends.
+              When I&apos;m not developing AI systems, you&apos;ll find me exploring the latest research
+              in machine learning, contributing to open-source robotics projects, and sharing insights
+              with the AI and robotics community. I believe in continuous innovation and staying at
+              the forefront of autonomous technology.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">

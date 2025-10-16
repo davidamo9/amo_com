@@ -67,10 +67,10 @@ export function Contact() {
                     <div>
                       <p className="font-medium">Email</p>
                       <a
-                        href="mailto:hello@aungmyintoo.com"
+                        href="mailto:aungmyintoo.david@gmail.com"
                         className="text-muted-foreground hover:text-blue-500 transition-colors"
                       >
-                        hello@aungmyintoo.com
+                        aungmyintoo.david@gmail.com
                       </a>
                     </div>
                   </div>
@@ -80,8 +80,15 @@ export function Contact() {
                       <Phone className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-medium">Phone</p>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                      <p className="font-medium">GitHub</p>
+                      <a
+                        href="https://github.com/davidamo9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-blue-500 transition-colors"
+                      >
+                        github.com/davidamo9
+                      </a>
                     </div>
                   </div>
 

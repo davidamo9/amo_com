@@ -36,7 +36,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-xl md:text-2xl text-muted-foreground mb-8"
           >
-            Full Stack Developer | Building elegant solutions to complex problems
+            Robotics Engineer | AI Systems & Autonomous Perception
           </motion.p>
 
           <motion.p
@@ -45,8 +45,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto"
           >
-            I craft beautiful, performant web applications with modern technologies.
-            Passionate about clean code, great UX, and continuous learning.
+            Building AI systems for autonomous perception and decision-making.
+            MSc in Robotics. Specializing in agentic workflows, RAG pipelines, and semantic search.
           </motion.p>
 
           <motion.div
@@ -70,32 +70,27 @@ export function Hero() {
             className="flex items-center justify-center gap-6"
           >
             <a
-              href="https://github.com/aungmyintoo"
+              href="https://github.com/davidamo9"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="GitHub Profile"
             >
               <Github className="h-6 w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/aungmyintoo"
+              href="https://www.linkedin.com/in/aung-myint-oo99/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="LinkedIn Profile"
             >
               <Linkedin className="h-6 w-6" />
             </a>
             <a
-              href="https://twitter.com/aungmyintoo"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:aungmyintoo.david@gmail.com"
               className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Twitter className="h-6 w-6" />
-            </a>
-            <a
-              href="mailto:hello@aungmyintoo.com"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Email Contact"
             >
               <Mail className="h-6 w-6" />
             </a>

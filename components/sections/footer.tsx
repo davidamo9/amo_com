@@ -17,7 +17,7 @@ export function Footer() {
               </span>
             </h3>
             <p className="text-muted-foreground">
-              Full Stack Developer passionate about creating elegant solutions to complex problems.
+              Robotics Engineer building AI systems for autonomous perception and decision-making.
             </p>
           </div>
 
@@ -58,32 +58,27 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex gap-4">
               <a
-                href="https://github.com/aungmyintoo"
+                href="https://github.com/davidamo9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
+                aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com/in/aungmyintoo"
+                href="https://www.linkedin.com/in/aung-myint-oo99/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://twitter.com/aungmyintoo"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:aungmyintoo.david@gmail.com"
                 className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:hello@aungmyintoo.com"
-                className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
+                aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
               </a>
