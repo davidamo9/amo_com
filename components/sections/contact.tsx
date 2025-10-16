@@ -14,13 +14,36 @@ export function Contact() {
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    setStatus("loading");
+
+    try {
+      const formspreeEndpoint = "https://formspree.io/f/xgvnrdkj";
+
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 5000);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   const handleChange = (
@@ -160,9 +183,28 @@ export function Contact() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" && "Sending..."}
+                  {status === "success" && "Message Sent!"}
+                  {status === "error" && "Failed to Send"}
+                  {status === "idle" && "Send Message"}
                 </Button>
+
+                {status === "success" && (
+                  <p className="text-sm text-green-500 text-center mt-2">
+                    Thank you for your message! I&apos;ll get back to you soon.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-red-500 text-center mt-2">
+                    Something went wrong. Please try again or email me directly.
+                  </p>
+                )}
               </form>
             </motion.div>
           </div>
