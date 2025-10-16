@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { sql } from '@vercel/postgres';
 
 // Initialize Resend with your API key
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -26,9 +27,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Save to database
+    const dbResult = await sql`
+      INSERT INTO contact_submissions (name, email, message)
+      VALUES (${name}, ${email}, ${message})
+      RETURNING id
+    `;
+
     // Send email using Resend
-    const data = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', // Will be replaced with your domain
+    const emailData = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
       to: ['aungmyintoo.david@gmail.com'],
       replyTo: email,
       subject: `New Contact Form Message from ${name}`,
@@ -39,18 +47,23 @@ export async function POST(request: NextRequest) {
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
         <hr>
+        <p><small>Submission ID: ${dbResult.rows[0].id}</small></p>
         <p><small>Sent from aungmyintoo.com contact form</small></p>
       `,
     });
 
     return NextResponse.json(
-      { message: 'Email sent successfully', id: data.id },
+      {
+        message: 'Message saved and email sent successfully',
+        submissionId: dbResult.rows[0].id,
+        emailId: emailData.id
+      },
       { status: 200 }
     );
   } catch (error) {
     console.error('Contact form error:', error);
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: 'Failed to process submission' },
       { status: 500 }
     );
   }
