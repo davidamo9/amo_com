@@ -3,10 +3,29 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Eye,
+  Brain,
+  GraduationCap,
+  TrendingUp,
+  Bot,
+  Bookmark,
+  LucideIcon
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getFeaturedProjects } from "@/lib/projects";
-import Image from "next/image";
+
+// Map project IDs to their icons
+const projectIcons: Record<string, LucideIcon> = {
+  "optics-framework": Eye,
+  "atlas": Brain,
+  "secondbrain": GraduationCap,
+  "ai-sales-buddy": TrendingUp,
+  "streamflow": Bot,
+  "refstash": Bookmark,
+};
 
 export function Projects() {
   const ref = useRef(null);
@@ -30,69 +49,77 @@ export function Projects() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group glass rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="relative h-48 bg-gradient-to-br from-blue-500/20 to-purple-600/20 overflow-hidden">
-                  {/* Placeholder for project image */}
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                    <span className="text-sm">Project Image</span>
-                  </div>
-                </div>
+            {projects.map((project, index) => {
+              const IconComponent = projectIcons[project.id] || Brain;
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group glass rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300"
+                >
+                  <div className="p-8">
+                    {/* Icon + Title Section */}
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="p-3 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex-shrink-0">
+                        <IconComponent className="h-8 w-8 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl font-bold mb-1 group-hover:text-blue-500 transition-colors">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-500 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-muted-foreground mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 text-xs rounded-full bg-muted"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-2">
-                    {project.demoUrl && (
-                      <Button size="sm" variant="default" asChild className="flex-1">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.slice(0, 4).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 text-xs rounded-full bg-muted"
                         >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Demo
-                        </a>
-                      </Button>
-                    )}
-                    {project.githubUrl && (
-                      <Button size="sm" variant="outline" asChild className="flex-1">
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Code
-                        </a>
-                      </Button>
-                    )}
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-2">
+                      {project.demoUrl && (
+                        <Button size="sm" variant="default" asChild className="flex-1">
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Demo
+                          </a>
+                        </Button>
+                      )}
+                      {project.githubUrl && (
+                        <Button size="sm" variant="outline" asChild className="flex-1">
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

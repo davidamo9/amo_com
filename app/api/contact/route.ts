@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { neon } from '@neondatabase/serverless';
 
-// Initialize Resend with your API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend with your API key (optional - will fail gracefully if not set)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,29 +36,36 @@ export async function POST(request: NextRequest) {
     `;
     const submissionId = dbResult[0].id;
 
-    // Send email using Resend
-    const emailData = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['aungmyintoo.david@gmail.com'],
-      replyTo: email,
-      subject: `New Contact Form Message from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <hr>
-        <p><small>Submission ID: ${submissionId}</small></p>
-        <p><small>Sent from aungmyintoo.com contact form</small></p>
-      `,
-    });
+    // Send email using Resend (if configured)
+    let emailData = null;
+    if (resend) {
+      try {
+        emailData = await resend.emails.send({
+          from: 'Portfolio Contact <onboarding@resend.dev>',
+          to: ['aungmyintoo.david@gmail.com'],
+          replyTo: email,
+          subject: `New Contact Form Message from ${name}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+            <hr>
+            <p><small>Submission ID: ${submissionId}</small></p>
+            <p><small>Sent from aungmyintoo.com contact form</small></p>
+          `,
+        });
+      } catch (emailError) {
+        console.warn('Email sending failed (Resend not configured):', emailError);
+      }
+    }
 
     return NextResponse.json(
       {
-        message: 'Message saved and email sent successfully',
+        message: 'Message saved successfully',
         submissionId: submissionId,
-        emailId: emailData.data?.id || 'sent'
+        emailId: emailData?.data?.id || 'not_configured'
       },
       { status: 200 }
     );

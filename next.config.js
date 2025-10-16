@@ -8,6 +8,12 @@ const nextConfig = {
       },
     ],
   },
+  // Ensure Railway API URL is available to API routes
+  env: {
+    RAILWAY_API_URL: process.env.RAILWAY_API_URL,
+  },
+  // Optimize for modular project structure
+  transpilePackages: [],
 }
 
 module.exports = nextConfig

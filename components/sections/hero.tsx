@@ -25,7 +25,7 @@ export function Hero() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                Aung Myint Oo
+                David Aung Myint Oo
               </span>
             </h1>
           </motion.div>
@@ -36,7 +36,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-xl md:text-2xl text-muted-foreground mb-8"
           >
-            Robotics Engineer | AI Systems & Autonomous Perception
+            Full-Stack AI Engineer | RAG Systems · LLM Integration · Production Deployments
           </motion.p>
 
           <motion.p
@@ -45,8 +45,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto"
           >
-            Building AI systems for autonomous perception and decision-making.
-            MSc in Robotics. Specializing in agentic workflows, RAG pipelines, and semantic search.
+            Building production-ready AI systems with RAG pipelines, vector databases, and enterprise deployments.
+            Specializing in intelligent code understanding, agentic architectures, and privacy-first AI solutions.
           </motion.p>
 
           <motion.div

@@ -1,0 +1,111 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  padding: 1.5rem 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(232, 213, 196, 0.1);
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #F5EDE3 0%, #E8D5C4 50%, #C9A880 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  letter-spacing: -1px;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  position: relative;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  font-weight: 600;
+  color: #C9B8A8;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem 1.5rem;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.nav-links li.active a {
+  color: #ffffff;
+}
+
+.nav-links a:hover {
+  color: #E8D5C4;
+}
+
+/* Glassmorphism active indicator */
+.active-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(232, 213, 196, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232, 213, 196, 0.3);
+  border-radius: 12px;
+  z-index: 1;
+  box-shadow:
+    0 4px 20px rgba(232, 213, 196, 0.2),
+    inset 0 0 20px rgba(232, 213, 196, 0.1);
+}
+
+/* Remove old underline effects */
+.nav-links a::before,
+.nav-links a::after {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    gap: 0.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+}

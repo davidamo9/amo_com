@@ -5,43 +5,43 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   Code2,
-  Database,
-  Layout,
-  Server,
-  Smartphone,
-  GitBranch,
+  Eye,
+  Cpu,
+  Terminal,
+  Brain,
+  GraduationCap,
 } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Frontend",
-    icon: Layout,
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js"],
+    title: "AI & LLM Integration",
+    icon: Brain,
+    skills: ["RAG Pipelines", "Vector Databases", "Prompt Engineering", "Multi-Agent Systems", "LangChain", "OpenAI API"],
   },
   {
-    title: "Backend",
-    icon: Server,
-    skills: ["Node.js", "Express", "Python", "Django", "REST APIs"],
+    title: "Vector & Graph Databases",
+    icon: Cpu,
+    skills: ["FAISS", "ChromaDB", "Pinecone", "NetworkX", "BM25", "Hybrid Search"],
   },
   {
-    title: "Database",
-    icon: Database,
-    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"],
-  },
-  {
-    title: "Mobile",
-    icon: Smartphone,
-    skills: ["React Native", "Flutter", "iOS", "Android", "PWA"],
-  },
-  {
-    title: "DevOps",
-    icon: GitBranch,
-    skills: ["Git", "Docker", "CI/CD", "AWS", "Vercel"],
-  },
-  {
-    title: "Languages",
+    title: "Backend Development",
     icon: Code2,
-    skills: ["JavaScript", "TypeScript", "Python", "SQL", "HTML/CSS"],
+    skills: ["FastAPI", "Flask", "PostgreSQL", "SQLite", "RESTful APIs", "WebSockets"],
+  },
+  {
+    title: "Frontend Development",
+    icon: Terminal,
+    skills: ["React 19", "TypeScript", "Next.js", "Tailwind CSS", "Vite", "Framer Motion"],
+  },
+  {
+    title: "DevOps & Infrastructure",
+    icon: Eye,
+    skills: ["AWS", "Docker", "Terraform", "Railway", "Vercel", "CI/CD", "GitHub Actions"],
+  },
+  {
+    title: "Specialized Technologies",
+    icon: GraduationCap,
+    skills: ["MCP Servers", "Tree-sitter AST", "Chrome Extensions", "Privacy Engineering", "JWT Auth", "Alembic Migrations"],
   },
 ];
 

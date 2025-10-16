@@ -24,42 +24,41 @@ export function About() {
 
           <div className="glass rounded-2xl p-8 md:p-12">
             <p className="text-lg text-muted-foreground mb-6">
-              I&apos;m a Robotics Engineer with a Master&apos;s degree in Robotics, specializing in
-              building AI systems for autonomous perception and decision-making. My work focuses
-              on creating intelligent systems that can understand, reason, and act in complex
-              environments.
+              I&apos;m a full-stack AI engineer specializing in building production-ready systems that leverage
+              RAG pipelines, vector databases, and large language models. My work bridges cutting-edge AI research
+              with practical enterprise applications, creating tools that developers and businesses actually use.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6">
-              My expertise spans agentic workflows, RAG (Retrieval-Augmented Generation) pipelines,
-              and semantic search systems. I combine deep learning, computer vision, and natural
-              language processing to build cutting-edge AI solutions that push the boundaries of
-              what&apos;s possible in autonomous systems.
+              Currently pursuing my Master&apos;s in Robotics at NUS (2023-2026) with a Bachelor&apos;s in
+              Electrical Engineering, I&apos;ve developed sophisticated systems including MCP servers for LLM
+              persistent memory, enterprise sales platforms with multi-agent architectures, and privacy-first
+              RAG systems deployed in production across multiple industries.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6">
-              When I&apos;m not developing AI systems, you&apos;ll find me exploring the latest research
-              in machine learning, contributing to open-source robotics projects, and sharing insights
-              with the AI and robotics community. I believe in continuous innovation and staying at
-              the forefront of autonomous technology.
+              My approach combines deep technical knowledge in vector databases (FAISS, ChromaDB), modern web
+              frameworks (FastAPI, React), and cloud infrastructure (AWS, Railway, Vercel) with a focus on
+              modular architecture, comprehensive documentation, and production-grade code quality. I believe
+              in building systems that are both technically sophisticated and genuinely useful.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500 mb-2">5+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
+                <div className="text-3xl font-bold text-blue-500 mb-2">7</div>
+                <div className="text-sm text-muted-foreground">Production Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-500 mb-2">50+</div>
-                <div className="text-sm text-muted-foreground">Projects Completed</div>
+                <div className="text-3xl font-bold text-purple-500 mb-2">6</div>
+                <div className="text-sm text-muted-foreground">RAG Systems Built</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500 mb-2">30+</div>
-                <div className="text-sm text-muted-foreground">Happy Clients</div>
+                <div className="text-3xl font-bold text-blue-500 mb-2">3</div>
+                <div className="text-sm text-muted-foreground">Cloud Platforms</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-500 mb-2">10+</div>
-                <div className="text-sm text-muted-foreground">Technologies</div>
+                <div className="text-3xl font-bold text-purple-500 mb-2">12</div>
+                <div className="text-sm text-muted-foreground">AI Agent Architecture</div>
               </div>
             </div>
           </div>
