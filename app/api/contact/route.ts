@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       {
         message: 'Message saved and email sent successfully',
         submissionId: dbResult.rows[0].id,
-        emailId: emailData.id
+        emailId: emailData.data?.id || 'sent'
       },
       { status: 200 }
     );
