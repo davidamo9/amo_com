@@ -1,8 +1,10 @@
-import { sql } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   try {
+    const sql = neon(process.env.DATABASE_URL!);
+
     // Simple authentication check
     const authHeader = request.headers.get('authorization');
     const adminPassword = process.env.ADMIN_PASSWORD;
@@ -22,8 +24,8 @@ export async function GET(request: NextRequest) {
     `;
 
     return NextResponse.json({
-      submissions: result.rows,
-      total: result.rowCount
+      submissions: result,
+      total: result.length
     }, { status: 200 });
   } catch (error) {
     console.error('Error fetching submissions:', error);
@@ -37,6 +39,8 @@ export async function GET(request: NextRequest) {
 // Mark a submission as read
 export async function PATCH(request: NextRequest) {
   try {
+    const sql = neon(process.env.DATABASE_URL!);
+
     const authHeader = request.headers.get('authorization');
     const adminPassword = process.env.ADMIN_PASSWORD;
 

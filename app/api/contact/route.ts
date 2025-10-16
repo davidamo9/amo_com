@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { sql } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
 
 // Initialize Resend with your API key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
+    const sql = neon(process.env.DATABASE_URL!);
     const body = await request.json();
     const { name, email, message } = body;
 
@@ -33,6 +34,7 @@ export async function POST(request: NextRequest) {
       VALUES (${name}, ${email}, ${message})
       RETURNING id
     `;
+    const submissionId = dbResult[0].id;
 
     // Send email using Resend
     const emailData = await resend.emails.send({
@@ -47,7 +49,7 @@ export async function POST(request: NextRequest) {
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
         <hr>
-        <p><small>Submission ID: ${dbResult.rows[0].id}</small></p>
+        <p><small>Submission ID: ${submissionId}</small></p>
         <p><small>Sent from aungmyintoo.com contact form</small></p>
       `,
     });
@@ -55,7 +57,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         message: 'Message saved and email sent successfully',
-        submissionId: dbResult.rows[0].id,
+        submissionId: submissionId,
         emailId: emailData.data?.id || 'sent'
       },
       { status: 200 }
