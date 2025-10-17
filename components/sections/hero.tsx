@@ -25,7 +25,7 @@ export function Hero() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                David Aung Myint Oo
+                Aung Myint Oo
               </span>
             </h1>
           </motion.div>
@@ -102,7 +102,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
         >
           <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <span className="text-sm">Scroll Down</span>

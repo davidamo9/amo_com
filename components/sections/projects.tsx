@@ -11,7 +11,7 @@ import {
   GraduationCap,
   TrendingUp,
   Bot,
-  Bookmark,
+  Radio,
   LucideIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,8 @@ const projectIcons: Record<string, LucideIcon> = {
   "atlas": Brain,
   "secondbrain": GraduationCap,
   "ai-sales-buddy": TrendingUp,
-  "streamflow": Bot,
-  "refstash": Bookmark,
+  "amoflow": Bot,
+  "asr": Radio,
 };
 
 export function Projects() {
@@ -103,18 +103,16 @@ export function Projects() {
                           </a>
                         </Button>
                       )}
-                      {project.githubUrl && (
-                        <Button size="sm" variant="outline" asChild className="flex-1">
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github className="h-4 w-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
+                      <Button size="sm" variant="outline" asChild className="flex-1">
+                        <a
+                          href="https://github.com/davidamo9"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </a>
+                      </Button>
                     </div>
                   </div>
                 </motion.div>
