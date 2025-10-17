@@ -1,13 +1,13 @@
-# StreamFlow AI Integration Setup Guide
+# AMOflow Integration Setup Guide
 
-This guide walks you through configuring the StreamFlow AI chatbot platform integration with your portfolio.
+This guide walks you through configuring the AMOflow AI platform integration with your portfolio.
 
 ## Architecture Overview
 
 ```
 User Browser
     ↓
-aungmyintoo.com/streamflow (Vercel Next.js)
+aungmyintoo.com/amoflow (Vercel Next.js)
     ↓
 /api/chat (Vercel API Route - Server-side proxy)
     ↓
@@ -78,7 +78,7 @@ RAILWAY_API_URL=https://your-actual-railway-app.up.railway.app
 npm run dev
 ```
 
-Navigate to: http://localhost:3000/streamflow
+Navigate to: http://localhost:3000/amoflow
 
 Try the interactive chatbot (last tab) and verify:
 - Messages are sent successfully
@@ -89,7 +89,7 @@ Try the interactive chatbot (last tab) and verify:
 
 ```bash
 git add .
-git commit -m "Add StreamFlow AI integration"
+git commit -m "Add AMOflow integration"
 git push
 ```
 
@@ -97,7 +97,7 @@ Vercel will automatically deploy your changes.
 
 ### Step 7: Verify Production
 
-1. Visit: https://aungmyintoo.com/streamflow
+1. Visit: https://aungmyintoo.com/amoflow
 2. Test the interactive chatbot
 3. Check browser console for errors (should be none)
 4. Verify conversation continuity (responses remember context)
@@ -296,7 +296,7 @@ analytics.track('chatbot_message_sent', {
 - [ ] `RAILWAY_API_URL` set in Vercel (all environments)
 - [ ] `FRONTEND_URL=https://aungmyintoo.com` set in Railway
 - [ ] Railway service is running (check dashboard)
-- [ ] `/streamflow` route accessible locally
+- [ ] `/amoflow` route accessible locally
 - [ ] Interactive chatbot responds successfully
 - [ ] No CORS errors in browser console
 - [ ] Conversation history maintained across messages

@@ -60,7 +60,7 @@ const About = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title">Why Choose StreamFlow?</h2>
+          <h2 className="section-title">Why Choose AMOflow?</h2>
         </motion.div>
 
         <motion.div

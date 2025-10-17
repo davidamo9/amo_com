@@ -8,12 +8,12 @@ import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
-// Import global styles for streamflow
+// Import global styles for AMOflow
 import './styles/global.css';
 
-export default function StreamflowApp() {
+export default function AmoflowApp() {
   return (
-    <div className="streamflow-app">
+    <div className="amoflow-app">
       <Navbar />
       <Hero />
       <Services />

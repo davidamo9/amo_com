@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { ChatMessage, ExtractedData, WorkflowStep } from '../../types';
+import type { ChatMessage, ExtractedData } from '../../types';
 import { demoScenarios } from './demoScenarios';
 import StatsPanel from './StatsPanel';
 import './ChatbotDemo.css';
@@ -18,22 +18,19 @@ const ChatbotDemo = () => {
 
   const isInteractive = activeScenario.interactive || false;
 
-  const workflowSteps: WorkflowStep[] = [
-    { id: '1', label: 'Message Received', status: 'pending', icon: '📨' },
-    { id: '2', label: 'Data Extracted', status: 'pending', icon: '🔍' },
-    { id: '3', label: 'CRM Updated', status: 'pending', icon: '💾' },
-    { id: '4', label: 'Email Sent', status: 'pending', icon: '✉️' },
-    { id: '5', label: 'Ticket Created', status: 'pending', icon: '🎫' },
-  ];
-
-  const [workflowStatus, setWorkflowStatus] = useState(workflowSteps);
-
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll within the chat container, not the entire page
+    const chatMessages = messagesEndRef.current?.parentElement;
+    if (chatMessages) {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Only auto-scroll if we have messages
+    if (messages.length > 0) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -41,7 +38,6 @@ const ChatbotDemo = () => {
     setMessages([]);
     setExtractedData({});
     setCurrentMessageIndex(0);
-    setWorkflowStatus(workflowSteps);
     setUserInput('');
 
     // Start playing scenario only if not interactive
@@ -93,9 +89,6 @@ const ChatbotDemo = () => {
             ...prev,
             ...scenarioMessage.extractedData,
           }));
-
-          // Update workflow status
-          updateWorkflowStatus(scenarioMessage.extractedData);
         }
 
         setCurrentMessageIndex(index + 1);
@@ -106,19 +99,34 @@ const ChatbotDemo = () => {
   };
 
   // API Integration - Connected to Railway backend via Vercel API
-  const sendMessageToAI = async (message: string): Promise<string> => {
+  const sendMessageToAI = async (userMessage: string): Promise<string> => {
     try {
+      // Build messages array for conversation context
+      const conversationMessages = [
+        ...messages.map(m => ({
+          role: m.sender === 'user' ? 'user' : 'assistant',
+          content: m.text,
+        })),
+        {
+          role: 'user',
+          content: userMessage,
+        },
+      ];
+
       const response = await fetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-          message,
+          messages: conversationMessages,
           sessionId: sessionStorage.getItem('chatSessionId') || undefined,
         }),
       });
 
       if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${response.status}`);
       }
 
       const data = await response.json();
@@ -128,26 +136,9 @@ const ChatbotDemo = () => {
         sessionStorage.setItem('chatSessionId', data.sessionId);
       }
 
-      return data.response || data.message || "I'm sorry, I couldn't process that request.";
+      return data.content || data.response || data.message || "I'm sorry, I couldn't process that request.";
     } catch (error) {
       console.error('Error calling chat API:', error);
-
-      // Fallback to mock responses if API is unavailable (development mode)
-      if (process.env.NODE_ENV === 'development') {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            const responses = [
-              "That's a great question! Our AI chatbot solutions are designed to be highly customizable and can integrate with your existing systems seamlessly.",
-              "I'd be happy to help with that. Can you tell me more about your specific use case?",
-              "Our platform supports multiple AI models including GPT-4, Claude, and custom fine-tuned models. Which would you prefer?",
-              "Absolutely! We offer both cloud-hosted and on-premise deployment options for maximum flexibility and security.",
-              "Great choice! Our team can set that up for you within 24 hours. Would you like to schedule a demo call?",
-            ];
-            resolve(responses[Math.floor(Math.random() * responses.length)]);
-          }, 1500);
-        });
-      }
-
       throw error;
     }
   };
@@ -182,6 +173,15 @@ const ChatbotDemo = () => {
     } catch (error) {
       console.error('Error sending message:', error);
       setIsTyping(false);
+
+      // Show error message to user
+      const errorMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment.",
+        sender: 'ai',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsSending(false);
     }
@@ -192,55 +192,6 @@ const ChatbotDemo = () => {
       e.preventDefault();
       handleSendMessage();
     }
-  };
-
-  const updateWorkflowStatus = (data: ExtractedData) => {
-    setWorkflowStatus(prev => {
-      const updated = [...prev];
-
-      // Message received
-      updated[0].status = 'completed';
-
-      // Data extracted
-      if (data.name || data.email || data.phone) {
-        updated[1].status = 'completed';
-      }
-
-      // CRM updated
-      if (data.email) {
-        setTimeout(() => {
-          setWorkflowStatus(prev => {
-            const newState = [...prev];
-            newState[2].status = 'completed';
-            return newState;
-          });
-        }, 1000);
-      }
-
-      // Email sent
-      if (data.email) {
-        setTimeout(() => {
-          setWorkflowStatus(prev => {
-            const newState = [...prev];
-            newState[3].status = 'completed';
-            return newState;
-          });
-        }, 2000);
-      }
-
-      // Ticket created
-      if (data.intent || data.issue) {
-        setTimeout(() => {
-          setWorkflowStatus(prev => {
-            const newState = [...prev];
-            newState[4].status = 'completed';
-            return newState;
-          });
-        }, 3000);
-      }
-
-      return updated;
-    });
   };
 
   return (
@@ -388,6 +339,7 @@ const ChatbotDemo = () => {
               <AnimatePresence>
                 {extractedData.name && (
                   <motion.div
+                    key="extraction-name"
                     className="extraction-card name"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -400,6 +352,7 @@ const ChatbotDemo = () => {
 
                 {extractedData.email && (
                   <motion.div
+                    key="extraction-email"
                     className="extraction-card email"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -412,6 +365,7 @@ const ChatbotDemo = () => {
 
                 {extractedData.phone && (
                   <motion.div
+                    key="extraction-phone"
                     className="extraction-card phone"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -424,6 +378,7 @@ const ChatbotDemo = () => {
 
                 {extractedData.company && (
                   <motion.div
+                    key="extraction-company"
                     className="extraction-card intent"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -436,6 +391,7 @@ const ChatbotDemo = () => {
 
                 {extractedData.intent && (
                   <motion.div
+                    key="extraction-intent"
                     className="extraction-card intent"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -448,6 +404,7 @@ const ChatbotDemo = () => {
 
                 {extractedData.issue && (
                   <motion.div
+                    key="extraction-issue"
                     className="extraction-card intent"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -469,47 +426,6 @@ const ChatbotDemo = () => {
           </motion.div>
           )}
         </div>
-
-        {/* Workflow Automation - Only show for non-interactive scenarios */}
-        {!isInteractive && (
-          <motion.div
-            className="workflow-section"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-          <h3 className="workflow-title">⚡ Automated Workflow</h3>
-          <div className="workflow-steps">
-            {workflowStatus.map((step, index) => (
-              <div key={step.id}>
-                <motion.div
-                  className={`workflow-step ${step.status}`}
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="workflow-step-icon">{step.icon}</div>
-                  <div className="workflow-step-label">{step.label}</div>
-                </motion.div>
-                {index < workflowStatus.length - 1 && (
-                  <div className="workflow-connector">
-                    <motion.div
-                      className="workflow-connector-progress"
-                      initial={{ width: '0%' }}
-                      animate={{
-                        width: step.status === 'completed' ? '100%' : '0%',
-                      }}
-                      transition={{ duration: 0.8 }}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-        )}
       </div>
     </section>
   );

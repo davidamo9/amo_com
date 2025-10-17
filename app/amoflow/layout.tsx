@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'StreamFlow AI Platform',
+  title: 'AMOflow',
 };
 
-export default function StreamflowLayout({
+export default function AmoflowLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="streamflow-layout">
+    <div className="amoflow-layout">
       {children}
     </div>
   );

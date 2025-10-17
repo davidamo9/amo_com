@@ -10,7 +10,7 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          &copy; {new Date().getFullYear()} StreamFlow. All rights reserved.
+          &copy; {new Date().getFullYear()} AMOflow. All rights reserved.
         </motion.p>
       </div>
     </footer>
