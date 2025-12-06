@@ -1,115 +1,255 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { MagneticButton } from "@/components/animations/MagneticButton";
+import { TextReveal } from "@/components/animations/TextReveal";
 
 export function Hero() {
+  const particleCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Particle system effect
+  useEffect(() => {
+    const canvas = particleCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationId: number;
+    let particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      opacity: number;
+    }> = [];
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    const createParticles = () => {
+      particles = [];
+      const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          size: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.5 + 0.1,
+        });
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((particle) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
+
+        // Draw particle (gold color)
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212, 168, 75, ${particle.opacity})`;
+        ctx.fill();
+      });
+
+      // Draw connections between nearby particles
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach((p2) => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(212, 168, 75, ${0.08 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        });
+      });
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    resizeCanvas();
+    createParticles();
+    animate();
+
+    const handleResize = () => {
+      resizeCanvas();
+      createParticles();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationId);
+    };
+  }, []);
+
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      {/* Gradient Background */}
-      <div className="absolute inset-0 gradient-bg opacity-50" />
-      <div className="absolute top-20 right-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" />
-      <div className="absolute bottom-20 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000" />
+      {/* Particle Canvas */}
+      <canvas
+        ref={particleCanvasRef}
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+      />
 
+      {/* Gradient Orbs */}
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[150px] animate-pulse-slow" />
+      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[180px]" />
+
+      {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Hi, I&apos;m{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                Aung Myint Oo
-              </span>
-            </h1>
+            <span className="inline-block px-5 py-2.5 border border-gold-500/30 rounded-full text-gold-500 text-sm tracking-[0.2em] uppercase font-body">
+              Founding Engineer & Technical Lead
+            </span>
           </motion.div>
 
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tight"
+          >
+            <TextReveal className="block text-foreground" delay={0.5}>
+              Aung Myint Oo
+            </TextReveal>
+          </motion.h1>
+
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-xl md:text-2xl text-muted-foreground mb-8"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="text-xl md:text-2xl text-muted-foreground mb-6 font-body max-w-3xl mx-auto"
           >
-            Full-Stack AI Engineer | RAG Systems · LLM Integration · Production Deployments
+            Building{" "}
+            <span className="text-gold-500">agentic AI coaching platforms</span>{" "}
+            at <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-gold-400 transition-colors">SalesBugle</a>.
+            Full-stack engineer with expertise in AI systems.
           </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto"
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="text-lg text-muted-foreground/70 mb-12 font-body max-w-2xl mx-auto"
           >
-            Building production-ready AI systems with RAG pipelines, vector databases, and enterprise deployments.
-            Specializing in intelligent code understanding, agentic architectures, and privacy-first AI solutions.
+            Specializing in RAG pipelines, multi-agent architectures,
+            and production-grade enterprise AI solutions.
           </motion.p>
 
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-12"
+            transition={{ duration: 0.8, delay: 1.6 }}
+            className="flex flex-wrap items-center justify-center gap-6 mb-16"
           >
-            <Button size="lg" asChild>
-              <a href="#projects">View My Work</a>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#contact">Get In Touch</a>
-            </Button>
+            <MagneticButton>
+              <a
+                href="#projects"
+                className="group relative inline-flex items-center px-8 py-4 bg-gold-500 text-background font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-glow-gold-lg"
+              >
+                <span className="relative z-10">View My Work</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-gold-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </MagneticButton>
+
+            <MagneticButton>
+              <a
+                href="#contact"
+                className="inline-flex items-center px-8 py-4 border border-gold-500/50 text-gold-500 font-semibold rounded-full hover:bg-gold-500/10 transition-all duration-300"
+              >
+                Get In Touch
+              </a>
+            </MagneticButton>
           </motion.div>
 
+          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 1.8 }}
             className="flex items-center justify-center gap-6"
           >
-            <a
-              href="https://github.com/davidamo9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub Profile"
-            >
-              <Github className="h-6 w-6" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/aung-myint-oo99/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
-            <a
-              href="mailto:aungmyintoo.david@gmail.com"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Email Contact"
-            >
-              <Mail className="h-6 w-6" />
-            </a>
+            {[
+              { icon: Github, href: "https://github.com/davidamo9", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/aung-myint-oo99/", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:aungmyintoo.david@gmail.com", label: "Email" },
+            ].map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group p-4 rounded-full border border-border hover:border-gold-500/50 text-muted-foreground hover:text-gold-500 transition-all duration-300 hover:scale-110"
+                aria-label={label}
+              >
+                <Icon className="h-5 w-5" />
+              </a>
+            ))}
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-        >
-          <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-            <span className="text-sm">Scroll Down</span>
-            <ArrowDown className="h-5 w-5 animate-bounce" />
-          </a>
-        </motion.div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 2 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      >
+        <a
+          href="#about"
+          className="flex flex-col items-center gap-3 text-muted-foreground hover:text-gold-500 transition-colors duration-300"
+        >
+          <span className="text-xs tracking-[0.3em] uppercase font-body">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowDown className="h-4 w-4" />
+          </motion.div>
+        </a>
+      </motion.div>
+
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }

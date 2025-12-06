@@ -1,66 +1,143 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { CountUp } from "@/components/animations/CountUp";
+
+const stats = [
+  { value: 7, label: "Production Projects", suffix: "" },
+  { value: 6, label: "RAG Systems Built", suffix: "" },
+  { value: 3, label: "Cloud Platforms", suffix: "" },
+  { value: 12, label: "AI Agents", suffix: "+" },
+];
 
 export function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-24 md:py-32 bg-secondary/30 relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" />
+
+      <div className="container mx-auto px-4 relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto"
+          transition={{ duration: 0.8 }}
+          className="max-w-6xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center">
-            About <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Me</span>
-          </h2>
+          {/* Header */}
+          <div className="text-center mb-16">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-gold-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
+            >
+              About
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-display text-4xl md:text-6xl font-bold"
+            >
+              Crafting{" "}
+              <span className="text-gold-500">Intelligent</span> Systems
+            </motion.h2>
+          </div>
 
-          <div className="glass rounded-2xl p-8 md:p-12">
-            <p className="text-lg text-muted-foreground mb-6">
-              I&apos;m a full-stack AI engineer specializing in building production-ready systems that leverage
-              RAG pipelines, vector databases, and large language models. My work bridges cutting-edge AI research
-              with practical enterprise applications, creating tools that developers and businesses actually use.
-            </p>
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+            {/* Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="lg:col-span-3 space-y-6"
+            >
+              <p className="text-lg text-muted-foreground leading-relaxed font-body">
+                As <span className="text-gold-500 font-medium">Founding Engineer & Technical Lead</span> at{" "}
+                <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-gold-400 transition-colors">SalesBugle</a>,
+                I&apos;m building an agentic AI coaching platform that delivers just-in-time
+                guidance for B2B sales teams. Leading the full technical vision from architecture
+                to deployment.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed font-body">
+                Currently pursuing my Master&apos;s in Robotics at NUS, I bring deep expertise
+                in RAG pipelines, multi-agent systems, and production AI deployments.
+                I&apos;ve built MCP servers for LLM persistent memory, enterprise platforms
+                with complex AI architectures, and privacy-first systems across industries.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed font-body">
+                My approach combines technical leadership with hands-on engineering—designing
+                scalable architectures, shipping production-grade code, and driving innovation
+                in modern AI-powered products.
+              </p>
 
-            <p className="text-lg text-muted-foreground mb-6">
-              Currently pursuing my Master&apos;s in Robotics at NUS (2023-2026) with a Bachelor&apos;s in
-              Electrical Engineering, I&apos;ve developed sophisticated systems including MCP servers for LLM
-              persistent memory, enterprise sales platforms with multi-agent architectures, and privacy-first
-              RAG systems deployed in production across multiple industries.
-            </p>
+              {/* Highlight box */}
+              <div className="mt-8 p-6 bg-card border border-border rounded-2xl">
+                <div className="flex items-start gap-4">
+                  <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-gold-500 to-amber-500 rounded-full" />
+                  <div>
+                    <h3 className="font-display text-lg font-semibold mb-2 text-foreground">Technical Focus</h3>
+                    <p className="text-muted-foreground font-body text-sm">
+                      Vector databases (FAISS, ChromaDB) · Modern frameworks (FastAPI, React, Next.js) ·
+                      Cloud infrastructure (AWS, Railway, Vercel) · AI/ML pipelines · Enterprise deployments
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
-            <p className="text-lg text-muted-foreground mb-6">
-              My approach combines deep technical knowledge in vector databases (FAISS, ChromaDB), modern web
-              frameworks (FastAPI, React), and cloud infrastructure (AWS, Railway, Vercel) with a focus on
-              modular architecture, comprehensive documentation, and production-grade code quality. I believe
-              in building systems that are both technically sophisticated and genuinely useful.
-            </p>
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="lg:col-span-2"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                    className="group bg-card border border-border rounded-2xl p-6 text-center hover:border-gold-500/30 transition-all duration-300"
+                  >
+                    <div className="font-display text-4xl md:text-5xl font-bold text-gold-500 mb-2">
+                      <CountUp end={stat.value} suffix={stat.suffix} duration={2.5} />
+                    </div>
+                    <div className="text-sm text-muted-foreground font-body">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500 mb-2">7</div>
-                <div className="text-sm text-muted-foreground">Production Projects</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-500 mb-2">6</div>
-                <div className="text-sm text-muted-foreground">RAG Systems Built</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500 mb-2">3</div>
-                <div className="text-sm text-muted-foreground">Cloud Platforms</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-500 mb-2">12</div>
-                <div className="text-sm text-muted-foreground">AI Agent Architecture</div>
-              </div>
-            </div>
+              {/* Education card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mt-4 bg-card border border-border rounded-2xl p-6"
+              >
+                <h4 className="font-display text-lg font-semibold mb-3 text-foreground">Education</h4>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-gold-500 font-medium font-body">MSc Robotics</p>
+                    <p className="text-muted-foreground text-sm font-body">National University of Singapore · 2023-2026</p>
+                  </div>
+                  <div>
+                    <p className="text-foreground font-medium font-body">BEng Electrical Engineering</p>
+                    <p className="text-muted-foreground text-sm font-body">Completed</p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScroll";
+import { CustomCursor } from "@/components/animations/CustomCursor";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aungmyintoo.com"),
@@ -95,21 +107,29 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${playfair.variable} ${spaceGrotesk.variable} font-body bg-background text-foreground antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          <SmoothScrollProvider>
+            {/* Grain Overlay */}
+            <div className="grain-overlay grain-animated" aria-hidden="true" />
+
+            {/* Custom Cursor */}
+            <CustomCursor />
+
+            {children}
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

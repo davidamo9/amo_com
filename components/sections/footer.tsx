@@ -1,98 +1,82 @@
 "use client";
 
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const socialLinks = [
+    { icon: Github, href: "https://github.com/davidamo9", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/aung-myint-oo99/", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:aungmyintoo.david@gmail.com", label: "Email" },
+  ];
+
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   return (
     <footer className="border-t border-border bg-background">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          {/* Main footer content */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+            {/* Brand */}
+            <div>
+              <a href="#home" className="font-display text-3xl font-bold text-gold-500 mb-4 block">
                 AMO
-              </span>
-            </h3>
-            <p className="text-muted-foreground">
-              Robotics Engineer building AI systems for autonomous perception and decision-making.
-            </p>
-          </div>
+              </a>
+              <p className="text-muted-foreground font-body max-w-xs">
+                Full-Stack AI Engineer building production-ready systems with RAG pipelines and enterprise deployments.
+              </p>
+            </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#home" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Home
+            {/* Navigation */}
+            <nav className="flex flex-wrap gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body text-sm"
+                >
+                  {link.name}
                 </a>
-              </li>
-              <li>
-                <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#skills" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Skills
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+              ))}
+            </nav>
 
-          {/* Social */}
-          <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/davidamo9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/aung-myint-oo99/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:aungmyintoo.david@gmail.com"
-                className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="p-3 rounded-xl bg-card border border-border hover:border-gold-500/30 text-muted-foreground hover:text-gold-500 transition-all duration-300 hover:scale-105"
+                  aria-label={label}
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              ))}
             </div>
           </div>
-        </div>
 
-        <div className="border-t border-border pt-8 text-center text-muted-foreground">
-          <p className="flex items-center justify-center gap-2">
-            Made with <Heart className="h-4 w-4 text-red-500 fill-red-500" /> by Aung Myint Oo
-          </p>
-          <p className="mt-2 text-sm">
-            &copy; {currentYear} All rights reserved.
-          </p>
+          {/* Divider */}
+          <div className="h-px bg-border mb-8" />
+
+          {/* Copyright */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <p className="text-muted-foreground font-body text-sm">
+              &copy; {currentYear} Aung Myint Oo. All rights reserved.
+            </p>
+            <p className="text-muted-foreground/60 font-body text-sm">
+              Designed & built with precision
+            </p>
+          </div>
         </div>
       </div>
     </footer>
