@@ -119,9 +119,20 @@ export function Hero() {
       />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[150px] animate-pulse-slow" />
-      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[180px]" />
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[150px] animate-pulse-slow hidden md:block" />
+      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] animate-pulse-slow hidden md:block" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[180px] hidden md:block" />
+
+      {/* Floating accent dots */}
+      <div className="absolute top-1/3 right-[15%] w-2 h-2 bg-gold-500/50 rounded-full animate-float hidden md:block" />
+      <div className="absolute top-2/3 left-[20%] w-1.5 h-1.5 bg-amber-500/40 rounded-full animate-float hidden md:block" style={{ animationDelay: "2s" }} />
+      <div className="absolute bottom-1/3 right-[25%] w-1 h-1 bg-gold-500/60 rounded-full animate-float hidden md:block" style={{ animationDelay: "4s" }} />
+
+      {/* Decorative corner accents */}
+      <div className="absolute top-24 left-8 w-20 h-px bg-gradient-to-r from-gold-500/40 to-transparent hidden lg:block" />
+      <div className="absolute top-24 left-8 w-px h-20 bg-gradient-to-b from-gold-500/40 to-transparent hidden lg:block" />
+      <div className="absolute top-24 right-8 w-20 h-px bg-gradient-to-l from-gold-500/40 to-transparent hidden lg:block" />
+      <div className="absolute top-24 right-8 w-px h-20 bg-gradient-to-b from-gold-500/40 to-transparent hidden lg:block" />
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
@@ -133,7 +144,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <span className="inline-block px-5 py-2.5 border border-gold-500/30 rounded-full text-gold-500 text-sm tracking-[0.2em] uppercase font-body">
+            <span className="inline-block px-5 py-2.5 border border-gold-500/30 rounded-full text-gold-500 text-sm tracking-[0.2em] uppercase font-body shimmer-hover">
               Founding Engineer & Technical Lead
             </span>
           </motion.div>
@@ -143,9 +154,9 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tight"
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-8 tracking-tight"
           >
-            <TextReveal className="block text-foreground" delay={0.5}>
+            <TextReveal className="block text-gold-500" delay={0.5}>
               Aung Myint Oo
             </TextReveal>
           </motion.h1>
@@ -217,7 +228,7 @@ export function Hero() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="group p-4 rounded-full border border-border hover:border-gold-500/50 text-muted-foreground hover:text-gold-500 transition-all duration-300 hover:scale-110"
+                className="group p-4 rounded-full border border-border hover:border-gold-500/50 text-muted-foreground hover:text-gold-500 transition-all duration-300 hover:scale-110 hover:shadow-glow-gold"
                 aria-label={label}
               >
                 <Icon className="h-5 w-5" />

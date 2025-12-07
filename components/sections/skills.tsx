@@ -138,7 +138,7 @@ export function Skills() {
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
               Skills &{" "}
-              <span className="text-gold-500">Technologies</span>
+              <span className="text-gradient-gold">Technologies</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -165,7 +165,7 @@ export function Skills() {
 
                     <div className="relative">
                       <div className="flex items-center gap-4 mb-5">
-                        <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/20 group-hover:bg-gold-500/20 group-hover:border-gold-500/30 transition-all duration-300">
+                        <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/20 group-hover:bg-gold-500/20 group-hover:border-gold-500/30 group-hover:shadow-glow-gold transition-all duration-300">
                           <category.icon className="h-6 w-6 text-gold-500" />
                         </div>
                         <h3 className="font-display text-lg font-semibold group-hover:text-gold-500 transition-colors duration-300">
@@ -177,7 +177,7 @@ export function Skills() {
                         {category.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="px-3 py-1.5 rounded-full bg-secondary border border-border text-sm text-muted-foreground font-body hover:border-gold-500/30 hover:text-foreground transition-all duration-300"
+                            className="px-3 py-1.5 rounded-full bg-secondary border border-border text-sm text-muted-foreground font-body hover:border-gold-500/30 hover:text-foreground transition-all duration-300 cursor-default"
                           >
                             {skill}
                           </span>

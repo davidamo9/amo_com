@@ -45,7 +45,7 @@ export function About() {
               className="font-display text-4xl md:text-6xl font-bold"
             >
               Crafting{" "}
-              <span className="text-gold-500">Intelligent</span> Systems
+              <span className="text-gradient-gold">Intelligent</span> Systems
             </motion.h2>
           </div>
 
@@ -80,7 +80,7 @@ export function About() {
               {/* Highlight box */}
               <div className="mt-8 p-6 bg-card border border-border rounded-2xl">
                 <div className="flex items-start gap-4">
-                  <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-gold-500 to-amber-500 rounded-full" />
+                  <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-gold-500 via-amber-500 to-gold-300 rounded-full animate-pulse-slow" />
                   <div>
                     <h3 className="font-display text-lg font-semibold mb-2 text-foreground">Technical Focus</h3>
                     <p className="text-muted-foreground font-body text-sm">
@@ -106,7 +106,7 @@ export function About() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="group bg-card border border-border rounded-2xl p-6 text-center hover:border-gold-500/30 transition-all duration-300"
+                    className="group bg-card border border-border rounded-2xl p-6 text-center hover:border-gold-500/30 transition-all duration-300 hover:shadow-glow-gold"
                   >
                     <div className="font-display text-4xl md:text-5xl font-bold text-gold-500 mb-2">
                       <CountUp end={stat.value} suffix={stat.suffix} duration={2.5} />

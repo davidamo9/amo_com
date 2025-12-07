@@ -37,8 +37,8 @@ export function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <MagneticButton strength={0.2}>
-            <a href="#home" className="font-display text-2xl font-bold">
-              <span className="text-gold-500">AMO</span>
+            <a href="#home" className="font-display text-2xl font-bold text-glow-hover">
+              <span className="text-gradient-gold">AMO</span>
             </a>
           </MagneticButton>
 
@@ -48,7 +48,7 @@ export function Navigation() {
               <MagneticButton key={item.name} strength={0.15}>
                 <a
                   href={item.href}
-                  className="text-sm tracking-wide text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body"
+                  className="text-sm tracking-wide text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
                 >
                   {item.name}
                 </a>
@@ -61,7 +61,7 @@ export function Navigation() {
             <MagneticButton>
               <a
                 href="#contact"
-                className="px-5 py-2.5 border border-gold-500/50 text-gold-500 rounded-full text-sm font-medium hover:bg-gold-500/10 transition-all duration-300"
+                className="px-5 py-2.5 border border-gold-500/50 text-gold-500 rounded-full text-sm font-medium hover:bg-gold-500/10 transition-all duration-300 shimmer-hover hover:shadow-glow-gold"
               >
                 Let&apos;s Talk
               </a>
@@ -89,7 +89,7 @@ export function Navigation() {
             isMobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
           )}
         >
-          <div className="py-6 space-y-1 border-t border-border/50 mt-4">
+          <div className="py-6 space-y-1 border-t border-gold-500/20 mt-4">
             {navItems.map((item) => (
               <a
                 key={item.name}

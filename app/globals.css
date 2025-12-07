@@ -186,3 +186,119 @@ html.has-custom-cursor button,
 html.has-custom-cursor [data-cursor-hover] {
   cursor: none;
 }
+
+/* ===== GRADIENT TEXT EFFECTS ===== */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #d4a84b 0%, #c27c1a 50%, #d4a84b 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== TEXT GLOW ON HOVER ===== */
+.text-glow-hover {
+  transition: text-shadow 0.3s ease;
+}
+
+.text-glow-hover:hover {
+  text-shadow: 0 0 20px rgba(212, 168, 75, 0.6), 0 0 40px rgba(212, 168, 75, 0.3);
+}
+
+/* ===== ANIMATED UNDERLINE ===== */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #d4a84b, #c27c1a);
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ===== SHIMMER EFFECT FOR BUTTONS ===== */
+.shimmer-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.shimmer-hover:hover::before {
+  left: 100%;
+}
+
+/* ===== GLOWING SECTION DIVIDER ===== */
+.glow-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 75, 0.4) 50%, transparent);
+  position: relative;
+}
+
+.glow-divider::before {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 75, 0.15) 50%, transparent);
+  filter: blur(8px);
+}
+
+/* ===== ENHANCED FOCUS STATES ===== */
+.focus-glow:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(0 0% 4%), 0 0 0 4px rgba(212, 168, 75, 0.5), 0 0 15px rgba(212, 168, 75, 0.3);
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  .grain-overlay {
+    opacity: 0.02;
+  }
+
+  /* Hide heavy blur elements on mobile for performance */
+  .blur-heavy-mobile {
+    display: none;
+  }
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-gold {
+    animation: none;
+  }
+
+  .shimmer-hover::before {
+    display: none;
+  }
+
+  .animate-float,
+  .animate-pulse-slow {
+    animation: none;
+  }
+}

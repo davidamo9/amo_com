@@ -125,7 +125,7 @@ export function Projects() {
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
               Featured{" "}
-              <span className="text-gold-500">Projects</span>
+              <span className="text-gradient-gold">Projects</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -138,7 +138,7 @@ export function Projects() {
           </div>
 
           {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto auto-rows-[minmax(280px,auto)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto auto-rows-[minmax(280px,auto)]">
             {projects.map((project, index) => {
               const IconComponent = projectIcons[project.id] || Brain;
               const sizeClass = bentoSizes[index % bentoSizes.length];
@@ -183,13 +183,13 @@ export function Projects() {
                           {project.tags.slice(0, isLarge ? 6 : 3).map((tag) => (
                             <span
                               key={tag}
-                              className="px-3 py-1 text-xs rounded-full bg-secondary border border-border text-muted-foreground font-body"
+                              className="px-3 py-1 text-xs rounded-full bg-secondary border border-border text-muted-foreground font-body hover:border-gold-500/30 hover:text-foreground transition-all duration-300 cursor-default"
                             >
                               {tag}
                             </span>
                           ))}
                           {project.tags.length > (isLarge ? 6 : 3) && (
-                            <span className="px-3 py-1 text-xs rounded-full bg-secondary border border-border text-muted-foreground font-body">
+                            <span className="px-3 py-1 text-xs rounded-full bg-secondary border border-border text-muted-foreground font-body hover:border-gold-500/30 hover:text-foreground transition-all duration-300 cursor-default">
                               +{project.tags.length - (isLarge ? 6 : 3)}
                             </span>
                           )}
@@ -202,7 +202,7 @@ export function Projects() {
                               href={project.demoUrl}
                               target={project.demoUrl.startsWith("http") ? "_blank" : undefined}
                               rel={project.demoUrl.startsWith("http") ? "noopener noreferrer" : undefined}
-                              className="flex items-center gap-2 px-4 py-2.5 bg-gold-500 text-background rounded-lg font-medium text-sm hover:bg-gold-400 transition-all duration-300 hover:shadow-glow-gold"
+                              className="flex items-center gap-2 px-4 py-2.5 bg-gold-500 text-background rounded-lg font-medium text-sm hover:bg-gold-400 transition-all duration-300 hover:shadow-glow-gold shimmer-hover"
                             >
                               <ExternalLink className="h-4 w-4" />
                               Demo
@@ -225,6 +225,9 @@ export function Projects() {
               );
             })}
           </div>
+
+          {/* Glowing divider */}
+          <div className="glow-divider mt-16 max-w-xl mx-auto" />
         </motion.div>
       </div>
     </section>

@@ -81,7 +81,7 @@ export function Contact() {
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
               Get In{" "}
-              <span className="text-gold-500">Touch</span>
+              <span className="text-gradient-gold">Touch</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -113,7 +113,7 @@ export function Contact() {
                       <p className="font-medium font-body mb-1">Email</p>
                       <a
                         href="mailto:aungmyintoo.david@gmail.com"
-                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body"
+                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
                       >
                         aungmyintoo.david@gmail.com
                       </a>
@@ -130,7 +130,7 @@ export function Contact() {
                         href="https://github.com/davidamo9"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body"
+                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
                       >
                         github.com/davidamo9
                       </a>
@@ -147,7 +147,7 @@ export function Contact() {
                         href="https://www.linkedin.com/in/aung-myint-oo99/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body"
+                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
                       >
                         linkedin.com/in/aung-myint-oo99
                       </a>
@@ -223,7 +223,7 @@ export function Contact() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gold-500 text-background font-semibold rounded-xl hover:bg-gold-400 transition-all duration-300 hover:shadow-glow-gold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gold-500 text-background font-semibold rounded-xl hover:bg-gold-400 transition-all duration-300 hover:shadow-glow-gold disabled:opacity-50 disabled:cursor-not-allowed shimmer-hover"
                   >
                     {status === "loading" && (
                       <>

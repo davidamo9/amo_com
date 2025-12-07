@@ -27,7 +27,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
             {/* Brand */}
             <div>
-              <a href="#home" className="font-display text-3xl font-bold text-gold-500 mb-4 block">
+              <a href="#home" className="font-display text-3xl font-bold text-gradient-gold mb-4 block text-glow-hover">
                 AMO
               </a>
               <p className="text-muted-foreground font-body max-w-xs">
@@ -41,7 +41,7 @@ export function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body text-sm"
+                  className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body text-sm animated-underline"
                 >
                   {link.name}
                 </a>
@@ -56,7 +56,7 @@ export function Footer() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="p-3 rounded-xl bg-card border border-border hover:border-gold-500/30 text-muted-foreground hover:text-gold-500 transition-all duration-300 hover:scale-105"
+                  className="p-3 rounded-xl bg-card border border-border hover:border-gold-500/30 text-muted-foreground hover:text-gold-500 transition-all duration-300 hover:scale-105 hover:shadow-glow-gold"
                   aria-label={label}
                 >
                   <Icon className="h-5 w-5" />
@@ -66,7 +66,7 @@ export function Footer() {
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-border mb-8" />
+          <div className="glow-divider mb-8" />
 
           {/* Copyright */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
