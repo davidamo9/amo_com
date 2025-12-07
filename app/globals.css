@@ -50,7 +50,7 @@
 
     /* Muted */
     --muted: 0 0% 15%;               /* Dark gray */
-    --muted-foreground: 0 0% 55%;    /* Medium gray */
+    --muted-foreground: 0 0% 65%;    /* Accessible gray - WCAG AA */
 
     /* Accent - Amber */
     --accent: 30 70% 45%;            /* Amber: #c27c1a */
