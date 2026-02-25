@@ -55,8 +55,7 @@ export function Hero() {
             className="text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
           >
             Founding engineer based in Singapore. Currently building at{" "}
-            <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>{" "}
-            and Aeritas.
+            <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
 
           {/* CTA Buttons */}
