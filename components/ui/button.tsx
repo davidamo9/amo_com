@@ -7,18 +7,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gold-500 text-background hover:bg-gold-400 shadow-[0_0_20px_rgba(212,168,75,0.2)] hover:shadow-[0_0_30px_rgba(212,168,75,0.4)]",
+        default: "bg-orange-500 text-background hover:bg-orange-400",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-gold-500/50 text-gold-500 bg-transparent hover:bg-gold-500/10",
+          "border border-orange-500/50 text-orange-500 bg-transparent hover:bg-orange-500/10",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "text-muted-foreground hover:text-gold-500 hover:bg-gold-500/5",
-        link: "text-gold-500 underline-offset-4 hover:underline",
-        // Luxury variants
-        gold: "bg-gradient-to-r from-gold-500 to-amber-500 text-background hover:from-gold-400 hover:to-amber-400 shadow-glow-gold hover:shadow-glow-gold-lg",
-        "gold-outline": "border border-gold-500/50 text-gold-500 hover:bg-gold-500/10 hover:border-gold-500",
+        ghost: "text-muted-foreground hover:text-orange-500 hover:bg-orange-500/5",
+        link: "text-orange-500 underline-offset-4 hover:underline",
+        accent: "bg-orange-500 text-background hover:bg-orange-400",
+        "accent-outline": "border border-orange-500/50 text-orange-500 hover:bg-orange-500/10 hover:border-orange-500",
       },
       size: {
         default: "h-10 px-4 py-2",

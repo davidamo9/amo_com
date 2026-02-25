@@ -2,13 +2,29 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { CountUp } from "@/components/animations/CountUp";
+import { Brain, Code2, Users, Wrench } from "lucide-react";
 
-const stats = [
-  { value: 7, label: "Production Projects", suffix: "" },
-  { value: 6, label: "RAG Systems Built", suffix: "" },
-  { value: 3, label: "Cloud Platforms", suffix: "" },
-  { value: 12, label: "AI Agents", suffix: "+" },
+const capabilities = [
+  {
+    icon: Brain,
+    title: "AI Product Architecture",
+    description: "RAG systems, multi-agent orchestration, vector databases, layered memory systems, and model-agnostic LLM pipelines.",
+  },
+  {
+    icon: Code2,
+    title: "Full-Stack Engineering",
+    description: "Next.js, FastAPI, PostgreSQL, AWS, CI/CD pipelines, and cloud-native deployment infrastructure.",
+  },
+  {
+    icon: Users,
+    title: "Technical Leadership",
+    description: "Architecture decisions, hiring foundations, production operations, and end-to-end product ownership.",
+  },
+  {
+    icon: Wrench,
+    title: "Developer Tooling & Automation",
+    description: "MCP servers, CLI tools, PyPI packages, Chrome extensions, CI/CD pipelines, and workflow automation.",
+  },
 ];
 
 export function About() {
@@ -16,7 +32,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-secondary/30 relative overflow-hidden">
+    <section id="what-i-do" className="py-24 md:py-32 bg-secondary/30 relative overflow-hidden">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" />
 
@@ -34,111 +50,55 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-gold-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
+              className="text-orange-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
             >
-              About
+              What I Do
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-display text-4xl md:text-6xl font-bold"
+              className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              Crafting{" "}
-              <span className="text-gradient-gold">Intelligent</span> Systems
+              I build the technical foundation
+              <br className="hidden md:block" />
+              <span className="text-orange-500"> for AI-native companies.</span>
             </motion.h2>
           </div>
 
-          {/* Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
-            {/* Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="lg:col-span-3 space-y-6"
-            >
-              <p className="text-lg text-muted-foreground leading-relaxed font-body">
-                As <span className="text-gold-500 font-medium">Founding Engineer & Technical Lead</span> at{" "}
-                <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-gold-500 hover:text-gold-400 transition-colors">SalesBugle</a>,
-                I&apos;m building an agentic AI coaching platform that delivers just-in-time
-                guidance for B2B sales teams. Leading the full technical vision from architecture
-                to deployment.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed font-body">
-                Currently pursuing my Master&apos;s in Robotics at NUS, I bring deep expertise
-                in RAG pipelines, multi-agent systems, and production AI deployments.
-                I&apos;ve built MCP servers for LLM persistent memory, enterprise platforms
-                with complex AI architectures, and privacy-first systems across industries.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed font-body">
-                My approach combines technical leadership with hands-on engineering—designing
-                scalable architectures, shipping production-grade code, and driving innovation
-                in modern AI-powered products.
-              </p>
-
-              {/* Highlight box */}
-              <div className="mt-8 p-6 bg-card border border-border rounded-2xl">
-                <div className="flex items-start gap-4">
-                  <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-gold-500 via-amber-500 to-gold-300 rounded-full animate-pulse-slow" />
-                  <div>
-                    <h3 className="font-display text-lg font-semibold mb-2 text-foreground">Technical Focus</h3>
-                    <p className="text-muted-foreground font-body text-sm">
-                      Vector databases (FAISS, ChromaDB) · Modern frameworks (FastAPI, React, Next.js) ·
-                      Cloud infrastructure (AWS, Railway, Vercel) · AI/ML pipelines · Enterprise deployments
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="lg:col-span-2"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="group bg-card border border-border rounded-2xl p-6 text-center hover:border-gold-500/30 transition-all duration-300 hover:shadow-glow-gold"
-                  >
-                    <div className="font-display text-4xl md:text-5xl font-bold text-gold-500 mb-2">
-                      <CountUp end={stat.value} suffix={stat.suffix} duration={2.5} />
-                    </div>
-                    <div className="text-sm text-muted-foreground font-body">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Education card */}
+          {/* Capability Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
+            {capabilities.map((cap, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="mt-4 bg-card border border-border rounded-2xl p-6"
+                key={cap.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                className="bg-card border border-border rounded-2xl p-8 hover:border-orange-500/20 transition-all duration-300"
               >
-                <h4 className="font-display text-lg font-semibold mb-3 text-foreground">Education</h4>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-gold-500 font-medium font-body">MSc Robotics</p>
-                    <p className="text-muted-foreground text-sm font-body">National University of Singapore · 2023-2026</p>
-                  </div>
-                  <div>
-                    <p className="text-foreground font-medium font-body">BEng Electrical Engineering</p>
-                    <p className="text-muted-foreground text-sm font-body">Completed</p>
-                  </div>
+                <div className="inline-flex p-3 rounded-xl bg-orange-500/10 border border-orange-500/20 mb-6">
+                  <cap.icon className="h-6 w-6 text-orange-500" />
                 </div>
+                <h3 className="font-display text-xl font-semibold mb-3 text-foreground">
+                  {cap.title}
+                </h3>
+                <p className="text-muted-foreground font-body text-sm leading-relaxed">
+                  {cap.description}
+                </p>
               </motion.div>
-            </motion.div>
+            ))}
           </div>
+
+          {/* Summary Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-center text-lg text-muted-foreground font-body max-w-3xl mx-auto leading-relaxed"
+          >
+            I partner with domain founders who have deep industry expertise but need a technical co-founder
+            to transform their vision into scalable, AI-powered products with real-world traction.
+          </motion.p>
         </motion.div>
       </div>
     </section>

@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "serif"],
+        display: ["var(--font-display)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],
       },
       colors: {
@@ -48,23 +48,18 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        // Gold color scale for direct use
-        gold: {
-          50: "#fdf8eb",
-          100: "#f9ecc7",
-          200: "#f3d88a",
-          300: "#ecc04d",
-          400: "#e5a823",
-          500: "#d4a84b",
-          600: "#b8872e",
-          700: "#966628",
-          800: "#7a5126",
-          900: "#664323",
-        },
-        // Amber accent
-        amber: {
-          500: "#c27c1a",
-          600: "#a66a15",
+        // Orange accent scale for direct use
+        orange: {
+          50: "#fff7ed",
+          100: "#ffedd5",
+          200: "#fed7aa",
+          300: "#fdba74",
+          400: "#fb923c",
+          500: "#F97316",
+          600: "#ea580c",
+          700: "#c2410c",
+          800: "#9a3412",
+          900: "#7c2d12",
         },
       },
       borderRadius: {
@@ -80,7 +75,6 @@ const config: Config = {
         "float": "float 6s ease-in-out infinite",
         "pulse-slow": "pulseSlow 4s ease-in-out infinite",
         "shimmer": "shimmer 2s linear infinite",
-        "glow": "glow 2s ease-in-out infinite",
         "spin-slow": "spin 8s linear infinite",
       },
       keyframes: {
@@ -118,23 +112,9 @@ const config: Config = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
-        glow: {
-          "0%, 100%": {
-            boxShadow: "0 0 20px rgba(212, 168, 75, 0.2)"
-          },
-          "50%": {
-            boxShadow: "0 0 40px rgba(212, 168, 75, 0.4)"
-          },
-        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "shimmer-gold": "linear-gradient(90deg, transparent, rgba(212,168,75,0.1), transparent)",
-        "gradient-gold": "linear-gradient(135deg, #d4a84b 0%, #c27c1a 100%)",
-      },
-      boxShadow: {
-        "glow-gold": "0 0 20px rgba(212, 168, 75, 0.2)",
-        "glow-gold-lg": "0 0 40px rgba(212, 168, 75, 0.3)",
       },
     },
   },

@@ -111,7 +111,7 @@ export function CustomCursor() {
       {/* Outer ring */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-gold-500/50 pointer-events-none z-[9998] mix-blend-difference hidden md:block transition-opacity duration-300"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-orange-500/50 pointer-events-none z-[9998] mix-blend-difference hidden md:block transition-opacity duration-300"
         style={{
           transform: "translate(-50%, -50%)",
           opacity: isVisible ? 0.5 : 0,
@@ -120,7 +120,7 @@ export function CustomCursor() {
       {/* Inner dot */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-gold-500 pointer-events-none z-[9998] hidden md:block transition-opacity duration-300"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-orange-500 pointer-events-none z-[9998] hidden md:block transition-opacity duration-300"
         style={{
           transform: "translate(-50%, -50%)",
           opacity: isVisible ? 1 : 0,

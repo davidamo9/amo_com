@@ -6,9 +6,10 @@ import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "What I Do", href: "#what-i-do" },
+  { name: "Ventures", href: "#ventures" },
+  { name: "Work", href: "#work" },
+  { name: "Expertise", href: "#expertise" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -37,8 +38,8 @@ export function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <MagneticButton strength={0.2}>
-            <a href="#home" className="font-display text-2xl font-bold text-glow-hover">
-              <span className="text-gradient-gold">AMO</span>
+            <a href="#home" className="font-display text-2xl font-bold text-foreground hover:text-orange-500 transition-colors duration-300">
+              AMO
             </a>
           </MagneticButton>
 
@@ -48,7 +49,7 @@ export function Navigation() {
               <MagneticButton key={item.name} strength={0.15}>
                 <a
                   href={item.href}
-                  className="text-sm tracking-wide text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
+                  className="text-sm tracking-wide text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
                 >
                   {item.name}
                 </a>
@@ -61,7 +62,7 @@ export function Navigation() {
             <MagneticButton>
               <a
                 href="#contact"
-                className="px-5 py-2.5 border border-gold-500/50 text-gold-500 rounded-full text-sm font-medium hover:bg-gold-500/10 transition-all duration-300 shimmer-hover hover:shadow-glow-gold"
+                className="px-5 py-2.5 border border-orange-500/50 text-orange-500 rounded-full text-sm font-medium hover:bg-orange-500/10 transition-all duration-300 shimmer-hover"
               >
                 Let&apos;s Talk
               </a>
@@ -70,7 +71,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground hover:text-gold-500 transition-colors"
+            className="md:hidden p-2 text-foreground hover:text-orange-500 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -86,15 +87,15 @@ export function Navigation() {
         <div
           className={cn(
             "md:hidden overflow-hidden transition-all duration-300",
-            isMobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+            isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
-          <div className="py-6 space-y-1 border-t border-gold-500/20 mt-4">
+          <div className="py-6 space-y-1 border-t border-border/50 mt-4">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block text-lg text-muted-foreground hover:text-gold-500 transition-colors duration-300 py-3 font-body"
+                className="block text-lg text-muted-foreground hover:text-orange-500 transition-colors duration-300 py-3 font-body"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
@@ -102,7 +103,7 @@ export function Navigation() {
             ))}
             <a
               href="#contact"
-              className="inline-block mt-4 px-6 py-3 border border-gold-500/50 text-gold-500 rounded-full text-sm font-medium hover:bg-gold-500/10 transition-all duration-300"
+              className="inline-block mt-4 px-6 py-3 border border-orange-500/50 text-orange-500 rounded-full text-sm font-medium hover:bg-orange-500/10 transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Let&apos;s Talk

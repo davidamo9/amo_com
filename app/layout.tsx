@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScroll";
-import { CustomCursor } from "@/components/animations/CustomCursor";
 
-const playfair = Playfair_Display({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
@@ -20,25 +19,23 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://aungmyintoo.com"),
   title: {
-    default: "Aung Myint Oo - Robotics Engineer | AI Systems & Autonomous Perception",
+    default: "Aung Myint Oo - AI Systems Architect | Founding Engineer",
     template: "%s | Aung Myint Oo",
   },
-  description: "Robotics Engineer with MSc specializing in AI systems for autonomous perception and decision-making. Expert in agentic workflows, RAG pipelines, semantic search, computer vision, and deep learning.",
+  description: "Founding engineer building AI-powered SaaS products. Currently at Salesbugle (sales coaching) and Aeritas (HVAC intelligence). Background in robotics, computer vision, and full-stack systems. MSc NUS.",
   keywords: [
     "Aung Myint Oo",
-    "Robotics Engineer",
-    "AI Systems",
-    "Autonomous Perception",
-    "Machine Learning",
-    "Deep Learning",
+    "Founding Engineer",
+    "Full-Stack Engineer",
+    "AI SaaS",
+    "FastAPI",
+    "Next.js",
+    "Python",
+    "LLM",
+    "RAG",
     "Computer Vision",
-    "RAG Pipelines",
-    "Agentic Workflows",
-    "Semantic Search",
-    "NLP",
-    "MSc Robotics",
-    "Artificial Intelligence",
-    "Autonomous Systems",
+    "Robotics",
+    "Singapore",
   ],
   authors: [{ name: "Aung Myint Oo", url: "https://aungmyintoo.com" }],
   creator: "Aung Myint Oo",
@@ -46,14 +43,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://aungmyintoo.com",
-    title: "Aung Myint Oo - Robotics Engineer | AI Systems & Autonomous Perception",
-    description: "Robotics Engineer with MSc specializing in AI systems for autonomous perception and decision-making. Expert in agentic workflows, RAG pipelines, and semantic search.",
-    siteName: "Aung Myint Oo - Robotics Engineer",
+    title: "Aung Myint Oo - AI Systems Architect | Founding Engineer",
+    description: "Founding engineer building AI-powered SaaS products. Currently at Salesbugle and Aeritas. Background in robotics, computer vision, and full-stack systems.",
+    siteName: "Aung Myint Oo - Founding Engineer",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aung Myint Oo - Robotics Engineer | AI Systems",
-    description: "Robotics Engineer specializing in AI systems for autonomous perception and decision-making.",
+    title: "Aung Myint Oo - AI Systems Architect | Founding Engineer",
+    description: "Founding engineer building AI-powered SaaS products. Currently at Salesbugle and Aeritas.",
   },
   robots: {
     index: true,
@@ -82,26 +79,34 @@ export default function RootLayout({
       "https://github.com/davidamo9",
       "https://www.linkedin.com/in/aung-myint-oo99/",
     ],
-    jobTitle: "Robotics Engineer",
-    worksFor: {
-      "@type": "Organization",
-      name: "Independent",
-    },
+    jobTitle: "Founding Engineer",
+    description: "Founding engineer building AI-powered SaaS products. Previously robotics and computer vision at Mozark, deployed across 4 countries. MSc Robotics from NUS.",
+    worksFor: [
+      {
+        "@type": "Organization",
+        name: "Salesbugle",
+        url: "https://salesbugle.com",
+      },
+      {
+        "@type": "Organization",
+        name: "Aeritas",
+      },
+    ],
     alumniOf: {
       "@type": "EducationalOrganization",
-      name: "MSc in Robotics",
+      name: "National University of Singapore",
     },
     knowsAbout: [
-      "Robotics",
-      "Artificial Intelligence",
-      "Machine Learning",
-      "Computer Vision",
-      "Deep Learning",
-      "Autonomous Systems",
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "AWS",
+      "LLM Integration",
       "RAG Pipelines",
-      "Agentic Workflows",
-      "Semantic Search",
-      "Natural Language Processing",
+      "Computer Vision",
+      "Robotics",
     ],
     email: "aungmyintoo.david@gmail.com",
   };
@@ -114,7 +119,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${playfair.variable} ${spaceGrotesk.variable} font-body bg-background text-foreground antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-body bg-background text-foreground antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -125,9 +130,6 @@ export default function RootLayout({
           <SmoothScrollProvider>
             {/* Grain Overlay */}
             <div className="grain-overlay grain-animated" aria-hidden="true" />
-
-            {/* Custom Cursor */}
-            <CustomCursor />
 
             {children}
           </SmoothScrollProvider>

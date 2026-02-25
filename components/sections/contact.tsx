@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Linkedin, Github, Send, CheckCircle, XCircle } from "lucide-react";
+import { Mail, Linkedin, Github, Phone, Send, CheckCircle, XCircle } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 
 export function Contact() {
@@ -12,12 +12,15 @@ export function Contact() {
     name: "",
     email: "",
     message: "",
+    website: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "rate-limited">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorMessage("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -30,14 +33,20 @@ export function Contact() {
 
       if (response.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", website: "" });
         setTimeout(() => setStatus("idle"), 5000);
+      } else if (response.status === 429) {
+        setStatus("rate-limited");
+        setTimeout(() => setStatus("idle"), 8000);
       } else {
+        const data = await response.json().catch(() => null);
+        setErrorMessage(data?.error || "Something went wrong. Please try again.");
         setStatus("error");
         setTimeout(() => setStatus("idle"), 5000);
       }
     } catch (error) {
       console.error("Form submission error:", error);
+      setErrorMessage("Network error. Check your connection and try again.");
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
     }
@@ -70,9 +79,9 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-gold-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
+              className="text-orange-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
             >
-              Contact
+              Let&apos;s Build
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -80,8 +89,8 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              Get In{" "}
-              <span className="text-gradient-gold">Touch</span>
+              Have a project that needs{" "}
+              <span className="text-orange-500">an engineer?</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -89,7 +98,8 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-muted-foreground max-w-2xl mx-auto font-body"
             >
-              Have a project in mind or want to collaborate? Feel free to reach out!
+              Open to founding engineer roles, contract work, and early-stage
+              technical partnerships. Happy to chat about what you&apos;re building.
             </motion.p>
           </div>
 
@@ -106,14 +116,14 @@ export function Contact() {
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/20">
-                      <Mail className="h-5 w-5 text-gold-500" />
+                    <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                      <Mail className="h-5 w-5 text-orange-500" />
                     </div>
                     <div>
                       <p className="font-medium font-body mb-1">Email</p>
                       <a
                         href="mailto:aungmyintoo.david@gmail.com"
-                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
+                        className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
                       >
                         aungmyintoo.david@gmail.com
                       </a>
@@ -121,8 +131,23 @@ export function Contact() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/20">
-                      <Github className="h-5 w-5 text-gold-500" />
+                    <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                      <Phone className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div>
+                      <p className="font-medium font-body mb-1">Phone</p>
+                      <a
+                        href="tel:+6597773062"
+                        className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
+                      >
+                        +65 9777 3062
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                      <Github className="h-5 w-5 text-orange-500" />
                     </div>
                     <div>
                       <p className="font-medium font-body mb-1">GitHub</p>
@@ -130,7 +155,7 @@ export function Contact() {
                         href="https://github.com/davidamo9"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
+                        className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
                       >
                         github.com/davidamo9
                       </a>
@@ -138,8 +163,8 @@ export function Contact() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-gold-500/10 border border-gold-500/20">
-                      <Linkedin className="h-5 w-5 text-gold-500" />
+                    <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                      <Linkedin className="h-5 w-5 text-orange-500" />
                     </div>
                     <div>
                       <p className="font-medium font-body mb-1">LinkedIn</p>
@@ -147,20 +172,13 @@ export function Contact() {
                         href="https://www.linkedin.com/in/aung-myint-oo99/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-gold-500 transition-colors duration-300 font-body animated-underline"
+                        className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
                       >
                         linkedin.com/in/aung-myint-oo99
                       </a>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Quick response note */}
-              <div className="bg-card border border-border rounded-2xl p-6">
-                <p className="text-muted-foreground font-body text-sm">
-                  I typically respond within 24-48 hours. For urgent inquiries, feel free to reach out via email directly.
-                </p>
               </div>
             </motion.div>
 
@@ -171,6 +189,20 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-8 space-y-6">
+                {/* Honeypot field — hidden from humans, bots fill it */}
+                <div className="absolute -left-[9999px]" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 font-body">
                     Name
@@ -182,7 +214,7 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all duration-300 font-body"
                     placeholder="Your name"
                   />
                 </div>
@@ -198,7 +230,7 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all duration-300 font-body"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -214,7 +246,7 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all duration-300 resize-none font-body"
+                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all duration-300 resize-none font-body"
                     placeholder="Your message..."
                   />
                 </div>
@@ -222,8 +254,8 @@ export function Contact() {
                 <MagneticButton className="w-full">
                   <button
                     type="submit"
-                    disabled={status === "loading"}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gold-500 text-background font-semibold rounded-xl hover:bg-gold-400 transition-all duration-300 hover:shadow-glow-gold disabled:opacity-50 disabled:cursor-not-allowed shimmer-hover"
+                    disabled={status === "loading" || status === "rate-limited"}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-orange-500 text-background font-semibold rounded-xl hover:bg-orange-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shimmer-hover"
                   >
                     {status === "loading" && (
                       <>
@@ -243,6 +275,12 @@ export function Contact() {
                         Failed to Send
                       </>
                     )}
+                    {status === "rate-limited" && (
+                      <>
+                        <XCircle className="h-5 w-5" />
+                        Too Many Requests
+                      </>
+                    )}
                     {status === "idle" && (
                       <>
                         <Send className="h-5 w-5" />
@@ -257,9 +295,15 @@ export function Contact() {
                     Thank you for your message! I&apos;ll get back to you soon.
                   </p>
                 )}
+                {status === "rate-limited" && (
+                  <p className="text-sm text-amber-500 text-center font-body">
+                    Too many submissions. Please wait a few minutes before trying again.
+                  </p>
+                )}
                 {status === "error" && (
                   <p className="text-sm text-red-500 text-center font-body">
-                    Something went wrong. Please try again or email me directly.
+                    {errorMessage || "Something went wrong."} You can also{" "}
+                    <a href="mailto:aungmyintoo.david@gmail.com" className="underline hover:text-red-400">email me directly</a>.
                   </p>
                 )}
               </form>
