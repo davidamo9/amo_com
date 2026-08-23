@@ -22,7 +22,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <span data-vision="NAMEPLATE · HUMAN_VERIFIED" className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-sm tracking-[0.2em] uppercase font-body">
+            <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-sm tracking-[0.2em] uppercase font-body">
               <span className="text-foreground font-semibold">Aung Myint Oo</span>
               <span className="text-orange-500"> · Founding Engineer · AI Product Architect</span>
             </span>
@@ -30,7 +30,6 @@ export function Hero() {
 
           {/* Main Heading */}
           <motion.h1
-            data-vision="VALUE_PROPOSITION"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -70,7 +69,6 @@ export function Hero() {
             <MagneticButton>
               <a
                 href="#ventures"
-                data-vision="PRIMARY_CTA"
                 className="inline-flex items-center px-8 py-4 bg-orange-500 text-background font-semibold rounded-full hover:bg-orange-400 transition-all duration-300"
               >
                 See My Work
