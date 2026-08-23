@@ -22,13 +22,14 @@ interface ConsoleLine {
 
 const LINES: ConsoleLine[] = [
   { text: '$ amoos dispatch "Ship HubSpot email sync, phase 2C: email pull"', tone: "command", delayMs: 400 },
+  { text: "  task scoped by AMO: architecture, constraints, acceptance criteria", tone: "info", delayMs: 600 },
   { text: "→ worker claude-code@macmini accepted task #385", tone: "action", delayMs: 700 },
   { text: "  context loaded: compiled brain pages for hubspot-full-email-sync", tone: "info", delayMs: 550 },
-  { text: "  plan approved: 4 steps, zero human input needed mid-flight", tone: "info", delayMs: 550 },
+  { text: "  plan submitted · reviewed and approved by AMO", tone: "info", delayMs: 550 },
   { text: "  writing code: integrations/hubspot, sync services, migrations", tone: "info", delayMs: 650 },
   { text: "  tests passing · CI green · PR #385 opened", tone: "info", delayMs: 650 },
   { text: "→ verification queue: evidence attached (diff, tests, logs)", tone: "action", delayMs: 700 },
-  { text: "✓ verified by AMO · merged · deployed to production", tone: "success", delayMs: 800 },
+  { text: "✓ code reviewed and verified by AMO · merged · deployed", tone: "success", delayMs: 800 },
   { text: "  brain recompiled: lessons captured for the next task", tone: "info", delayMs: 550 },
 ];
 
@@ -87,9 +88,11 @@ export function Factory() {
               <span className="text-orange-500">I run a fleet.</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto font-body">
-              amoOS dispatches AI agents to build my products and my clients&apos; products.
-              Below is a real dispatch, condensed. The fleet writes the code; nothing ships
-              until the one human in the loop verifies it. That human is me.
+              To be clear: you&apos;re not hiring the fleet, you&apos;re hiring the engineer
+              who built it. I scope the problem, design the architecture, make the hard
+              calls, and verify every result. The fleet is proof of what I can build, and
+              it multiplies how fast my decisions become production code. Below is a real
+              dispatch, condensed.
             </p>
           </div>
 
@@ -123,13 +126,13 @@ export function Factory() {
             {/* CTA */}
             <div className="mt-10 text-center">
               <p className="text-muted-foreground font-body mb-5">
-                Your product could be the next dispatch in this queue.
+                I scope it, I architect it, I verify it. The fleet just types faster than I do.
               </p>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-background font-semibold rounded-full hover:bg-orange-400 transition-all duration-300"
               >
-                Put your problem in the queue
+                Bring me your problem
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
