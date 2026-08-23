@@ -4,7 +4,7 @@
 
 ## Who he is
 
-- Founding Engineer & Technical Lead at Salesbugle (https://salesbugle.com), an AI sales coaching SaaS he built from empty repository to production with paying customers, as the sole engineer.
+- Founding Engineer & Technical Lead at Salesbugle (https://salesbugle.com), an AI sales coaching SaaS he built from empty repository to production with paying customers, as the sole engineer. Product releases ship continuously at https://app.salesbugle.com/whats-new.
 - Builder of amoOS, a personal software factory: an AI operating system where a fleet of AI coding agents does the building while he plans, dispatches, and verifies. It orchestrates 11 projects, compiles 400+ knowledge pages, and reports through a native macOS app and Telegram.
 - Previously robotics and computer vision engineer at Mozark, with robotic mobile-testing systems deployed across Singapore, Philippines, Thailand, and India.
 - MSc Robotics (National University of Singapore), B.Eng Electrical Engineering (Honours).

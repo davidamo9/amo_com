@@ -55,7 +55,7 @@ export function Hero() {
             Technical partner in Singapore. An idea you can&apos;t build, a workflow stuck in
             the past, a venture that needs its technical half. I take it from first
             conversation to production, and run it after. Currently building at{" "}
-            <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
+            <a href="https://app.salesbugle.com/whats-new" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
 
           {/* CTA Buttons */}

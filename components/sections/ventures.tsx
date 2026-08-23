@@ -16,7 +16,7 @@ const ventures = [
       "Sole engineer on infrastructure, CI/CD, cost tracking, and production ops",
     ],
     tags: ["Python", "FastAPI", "PostgreSQL", "AWS", "Next.js", "TypeScript", "LLM", "RAG"],
-    link: "https://salesbugle.com",
+    link: "https://app.salesbugle.com/whats-new",
   },
 ];
 
