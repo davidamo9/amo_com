@@ -200,7 +200,7 @@ export function VisionPass() {
                 {detections.length} elements · 0 defects
               </span>
               <span className="text-muted-foreground hidden sm:inline">
-                My robots did this to mobile apps in 4 countries.
+                Everything I ship gets inspected like this. Verified done, with evidence.
               </span>
               <button
                 type="button"
