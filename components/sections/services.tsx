@@ -2,29 +2,29 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Rocket, Handshake, Package, ArrowRight } from "lucide-react";
+import { Lightbulb, Workflow, Handshake, ArrowRight } from "lucide-react";
 
 const services = [
   {
-    icon: Rocket,
-    title: "Founding Engineer",
+    icon: Lightbulb,
+    title: "You have an idea but no way to build it",
     description:
-      "Join an early-stage team and own the entire technical foundation — architecture, AI systems, infrastructure, and the road to the first paying customers.",
-    fit: "For funded teams that need their first (or only) engineer to act like an owner.",
+      "I take it from first conversation to production — scoped, architected, built, deployed, and handed over working. A real product, not a prototype that dies in a demo.",
+    fit: "Usually a fixed-scope build, start to finish.",
+  },
+  {
+    icon: Workflow,
+    title: "A problem that needs a modern solution",
+    description:
+      "Manual processes, disconnected tools, work AI should be doing by now. I find the highest-leverage fix and build it into your operation without disrupting it.",
+    fit: "Usually a short, focused engagement around one problem.",
   },
   {
     icon: Handshake,
-    title: "Fractional Technical Co-Founder",
+    title: "Deep industry knowledge, no technical partner",
     description:
-      "You have the industry depth and the network; I bring the product and technology side. Long-term, equity-aligned partnership — not an agency relationship.",
-    fit: "For domain experts sitting on a venture they can't build alone.",
-  },
-  {
-    icon: Package,
-    title: "End-to-End MVP Build",
-    description:
-      "A contract engagement with one deliverable: your idea running in production — designed, architected, built, deployed, and handed over or kept running.",
-    fit: "For founders who need a real product, not a prototype that dies in a demo.",
+      "You know your field; I own everything technical — long term, as a partner, not an agency. You stay the expert while technology stops being your bottleneck.",
+    fit: "Usually a long-term, equity-aligned partnership.",
   },
 ];
 
@@ -49,7 +49,7 @@ export function Services() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-orange-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
             >
-              Work With Me
+              How I Can Help
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -57,8 +57,8 @@ export function Services() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              Three ways to get me{" "}
-              <span className="text-orange-500">on your side.</span>
+              Bring me a problem{" "}
+              <span className="text-orange-500">worth solving.</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -66,8 +66,8 @@ export function Services() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-muted-foreground max-w-2xl mx-auto font-body"
             >
-              Every engagement is end to end. I don&apos;t hand off half-finished systems —
-              I ship products and stand behind them in production.
+              However we structure it, the work is the same: understand the problem, build
+              the solution, run it end to end. The first conversation is always free.
             </motion.p>
           </div>
 

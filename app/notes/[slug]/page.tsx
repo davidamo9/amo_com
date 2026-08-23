@@ -59,8 +59,27 @@ export default async function NotePage({
     notFound();
   }
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: note.title,
+    description: note.summary,
+    datePublished: note.date,
+    url: `https://aungmyintoo.com/notes/${note.slug}`,
+    author: {
+      "@type": "Person",
+      name: "Aung Myint Oo",
+      url: "https://aungmyintoo.com",
+    },
+    keywords: note.tags.join(", "),
+  };
+
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Navigation />
 
       <section className="pt-32 pb-20 min-h-screen">
@@ -106,7 +125,8 @@ export default async function NotePage({
             {/* CTA */}
             <div className="mt-14 pt-8 border-t border-border">
               <p className="text-muted-foreground font-body mb-4">
-                Building something in your domain and want a technical partner who owns it end to end?
+                Sitting on an idea you don&apos;t know how to build, or a problem that needs a
+                modern solution? Tell me about it — the first conversation is free.
               </p>
               <Link
                 href="/#contact"

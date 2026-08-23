@@ -25,7 +25,6 @@ export const projects: Project[] = [
     status: "active",
     timeline: "Nov 2025 – Present",
     tags: ["AI Agent Fleet", "Orchestration", "Second Brain", "MCP", "FastAPI", "Next.js"],
-    githubUrl: "https://github.com/davidamo9",
     outcomes: [
       { label: "Projects Orchestrated", value: "11" },
       { label: "Compiled Knowledge Pages", value: "400+" },
@@ -58,7 +57,7 @@ export const projects: Project[] = [
       },
     ],
     artifacts: [
-      { type: "repo", label: "GitHub", url: "https://github.com/davidamo9" },
+      { type: "docs", label: "Build Log", url: "/notes/personal-software-factory" },
     ],
     lessons: [
       "Once agents write the code, the bottleneck moves to deciding, verifying, and remembering — so that is what the system optimizes for.",
@@ -75,7 +74,6 @@ export const projects: Project[] = [
     status: "active",
     timeline: "2025",
     tags: ["Python", "MCP", "FAISS", "Tree-sitter", "SQLite"],
-    githubUrl: "https://github.com/davidamo9/atlas",
     outcomes: [
       { label: "Token Reduction", value: "85–90%" },
       { label: "Query Latency", value: "<100ms" },
@@ -102,9 +100,7 @@ export const projects: Project[] = [
         tradeoff: "Some features (code summarization) are degraded without LLM",
       },
     ],
-    artifacts: [
-      { type: "repo", label: "GitHub", url: "https://github.com/davidamo9/atlas" },
-    ],
+    artifacts: [],
     lessons: [
       "Tree-sitter AST parsing handles edge cases (decorators, nested classes, multiline signatures) that regex misses entirely.",
       "Graph-aware retrieval (traversing call chains and imports) surfaces more relevant context than pure vector similarity.",
@@ -120,7 +116,6 @@ export const projects: Project[] = [
     status: "complete",
     timeline: "2025",
     tags: ["Python", "faster-whisper", "pyannote", "WebSocket", "FastAPI"],
-    githubUrl: "https://github.com/davidamo9/ai-sales-buddy",
     outcomes: [
       { label: "Word Accuracy", value: "85–95%" },
       { label: "Hallucination Filter", value: "90%+" },
@@ -151,9 +146,7 @@ export const projects: Project[] = [
         tradeoff: "Limited to 1–5 concurrent sessions per core",
       },
     ],
-    artifacts: [
-      { type: "repo", label: "GitHub", url: "https://github.com/davidamo9/ai-sales-buddy" },
-    ],
+    artifacts: [],
     lessons: [
       "Whisper hallucinates aggressively on silence and background noise — the four-layer filtering pipeline was essential, not optional.",
       "Sliding windows with overlap give much better results than fixed non-overlapping chunks because Whisper needs context.",
@@ -252,7 +245,7 @@ export const projects: Project[] = [
     status: "production",
     timeline: "2022 – 2024",
     tags: ["Python", "PyPI", "Appium", "OpenCV", "Delta Robots", "CI/CD"],
-    githubUrl: "https://github.com/davidamo9/optics-framework",
+    githubUrl: "https://github.com/davidamo9/optics-framework-public",
     demoUrl: "https://pypi.org/project/optics-framework/",
     outcomes: [
       { label: "Distribution", value: "PyPI" },
@@ -280,7 +273,7 @@ export const projects: Project[] = [
       },
     ],
     artifacts: [
-      { type: "repo", label: "GitHub", url: "https://github.com/davidamo9/optics-framework" },
+      { type: "repo", label: "GitHub", url: "https://github.com/davidamo9/optics-framework-public" },
       { type: "package", label: "PyPI", url: "https://pypi.org/project/optics-framework/" },
     ],
     lessons: [

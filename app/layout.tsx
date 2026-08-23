@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     "Fractional CTO",
     "AI SaaS",
     "AI Agents",
+    "AI Agent Engineer",
+    "Agentic Systems Engineer",
+    "AI Automation Consultant",
     "MCP",
     "FastAPI",
     "Next.js",
@@ -78,13 +81,19 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Aung Myint Oo",
+    alternateName: ["David Aung Myint Oo", "David Amo"],
     url: "https://aungmyintoo.com",
     sameAs: [
       "https://github.com/davidamo9",
       "https://www.linkedin.com/in/aung-myint-oo99/",
     ],
     jobTitle: "AI Product Architect & Founding Engineer",
-    description: "AI product architect and founding engineer who takes products from idea to production end to end. Previously robotics and computer vision at Mozark, deployed across 4 countries. MSc Robotics from NUS.",
+    description: "AI product architect and founding engineer in Singapore who takes AI products from idea to production end to end — architecture, agentic systems, infrastructure, and operations. Builds with AI agent fleets and partners with founders and domain experts to solve problems with modern AI solutions.",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "SG",
+      addressLocality: "Singapore",
+    },
     worksFor: [
       {
         "@type": "Organization",
@@ -97,20 +106,60 @@ export default function RootLayout({
       name: "National University of Singapore",
     },
     knowsAbout: [
+      "AI Agents",
+      "AI Agent Orchestration",
+      "Agentic Systems",
+      "Multi-Agent Systems",
+      "Model Context Protocol",
+      "LLM Integration",
+      "RAG Pipelines",
+      "AI Automation",
       "Python",
       "FastAPI",
       "Next.js",
       "TypeScript",
       "PostgreSQL",
       "AWS",
-      "LLM Integration",
-      "RAG Pipelines",
-      "AI Agent Orchestration",
-      "Model Context Protocol",
       "Computer Vision",
       "Robotics",
     ],
     email: "aungmyintoo.david@gmail.com",
+  };
+
+  const servicesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Aung Myint Oo — AI Product Engineering",
+    url: "https://aungmyintoo.com",
+    areaServed: ["Singapore", "Remote"],
+    founder: { "@type": "Person", name: "Aung Myint Oo" },
+    description: "End-to-end AI product engineering: taking ideas to production, modernizing workflows with AI and agentic automation, and long-term technical partnership for domain experts. The first conversation is free.",
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "End-to-End Product Build",
+          description: "From idea to production: scoping, architecture, build, deployment, and handover of a working AI product.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI & Agentic Automation",
+          description: "Modernizing manual processes and disconnected tools with AI agents and automation, built around one high-leverage problem.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Technical Partnership",
+          description: "Long-term, equity-aligned technical partnership for domain experts building a venture.",
+        },
+      },
+    ],
   };
 
   return (
@@ -119,6 +168,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
         />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-body bg-background text-foreground antialiased`}>
