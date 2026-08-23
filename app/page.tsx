@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { StreamBackdrop } from "@/components/three/StreamBackdrop";
+import { VisionPass } from "@/components/vision/VisionPass";
 import { Hero } from "@/components/sections/hero";
 import { ProofBar } from "@/components/sections/proof-bar";
 import { About } from "@/components/sections/about";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <StreamBackdrop />
+      <VisionPass />
       <Navigation />
       <Hero />
       <ProofBar />
