@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { TextReveal } from "@/components/animations/TextReveal";
+import { track } from "@/lib/analytics";
 
 export function Hero() {
   return (
@@ -56,7 +57,7 @@ export function Hero() {
             Technical partner in Singapore. An idea you can&apos;t build, a workflow stuck in
             the past, a venture that needs its technical half. I take it from first
             conversation to production, and run it after. Currently building at{" "}
-            <a href="https://app.salesbugle.com/whats-new" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
+            <a href="https://app.salesbugle.com/whats-new" target="_blank" rel="noopener noreferrer" onClick={() => track("salesbugle_outbound", { placement: "hero" })} className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -86,6 +87,7 @@ export function Hero() {
 
             <a
               href="#factory"
+              onClick={() => track("hero_fleet_link_click")}
               className="inline-flex items-center gap-2.5 px-2 py-2 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-orange-500 transition-colors duration-300"
             >
               <span className="relative flex h-2 w-2">

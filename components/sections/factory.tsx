@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 /**
  * A condensed replay of a real amoOS dispatch (the HubSpot email sync task
@@ -53,6 +54,10 @@ export function Factory() {
     query.addEventListener("change", handleChange);
     return () => query.removeEventListener("change", handleChange);
   }, []);
+
+  useEffect(() => {
+    if (isInView) track("factory_view");
+  }, [isInView]);
 
   useEffect(() => {
     if (!isInView) return;
@@ -130,6 +135,7 @@ export function Factory() {
               </p>
               <a
                 href="#contact"
+                onClick={() => track("factory_cta_click")}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-background font-semibold rounded-full hover:bg-orange-400 transition-all duration-300"
               >
                 Bring me your problem

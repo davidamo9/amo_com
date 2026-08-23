@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 const ventures = [
   {
@@ -104,6 +105,7 @@ export function Ventures() {
                           href={venture.link}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => track("salesbugle_outbound", { placement: "ventures" })}
                           className="text-muted-foreground hover:text-orange-500 transition-colors"
                         >
                           <ExternalLink className="h-5 w-5" />

@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Linkedin, Github, Phone, Send, CheckCircle, XCircle } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
+import { track } from "@/lib/analytics";
 
 export function Contact() {
   const ref = useRef(null);
@@ -32,6 +33,7 @@ export function Contact() {
       });
 
       if (response.ok) {
+        track("contact_submit");
         setStatus("success");
         setFormData({ name: "", email: "", message: "", website: "" });
         setTimeout(() => setStatus("idle"), 5000);

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -58,6 +59,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Aung Myint Oo - AI Product Architect | Founding Engineer",
     description: "I take AI products from idea to production, end to end. Founding engineer at Salesbugle.",
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   robots: {
     index: true,
@@ -189,6 +193,9 @@ export default function RootLayout({
             {children}
           </SmoothScrollProvider>
         </ThemeProvider>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
