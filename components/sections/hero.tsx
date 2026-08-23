@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { TextReveal } from "@/components/animations/TextReveal";
+import { HeroStreams } from "@/components/three/HeroStreams";
 
 export function Hero() {
   return (
@@ -11,8 +12,8 @@ export function Hero() {
       id="home"
       className="min-h-screen flex items-center relative overflow-hidden"
     >
-      {/* Subtle gradient blob */}
-      <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[180px] hidden md:block" />
+      {/* Procedural stream backdrop */}
+      <HeroStreams />
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">

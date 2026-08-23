@@ -29,18 +29,24 @@ export function TextReveal({
     const element = textRef.current;
     if (!element) return;
 
-    // Split text into characters
+    // Split text into words of characters — chars animate individually, but
+    // each word is an unbreakable unit so lines only wrap at word boundaries
     const text = children;
     element.innerHTML = text
-      .split("")
-      .map((char) =>
-        char === " "
-          ? "<span class='inline-block'>&nbsp;</span>"
-          : `<span class='inline-block opacity-0' style='transform: translateY(50px)'>${char}</span>`
-      )
-      .join("");
+      .split(" ")
+      .map((word) => {
+        const chars = word
+          .split("")
+          .map(
+            (char) =>
+              `<span class='inline-block opacity-0' style='transform: translateY(50px)'>${char}</span>`
+          )
+          .join("");
+        return `<span class='inline-block whitespace-nowrap'>${chars}</span>`;
+      })
+      .join("<span class='inline-block'>&nbsp;</span>");
 
-    const chars = element.querySelectorAll("span");
+    const chars = element.querySelectorAll(":scope > span > span");
 
     const animation = {
       opacity: 1,
