@@ -92,6 +92,7 @@ export function HeroStreams() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mounted, setMounted] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [webglFailed, setWebglFailed] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -111,7 +112,10 @@ export function HeroStreams() {
     if (!container || !canvas) return;
 
     const gl = canvas.getContext("webgl", { alpha: true, antialias: false });
-    if (!gl) return;
+    if (!gl) {
+      setWebglFailed(true);
+      return;
+    }
 
     const vertex = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
     const fragment = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
@@ -185,7 +189,7 @@ export function HeroStreams() {
     };
   }, [active]);
 
-  if (!active) {
+  if (!active || webglFailed) {
     return <StaticGlow />;
   }
 
