@@ -22,8 +22,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-orange-500 text-sm tracking-[0.2em] uppercase font-body">
-              Aung Myint Oo · Founding Engineer · AI Product Architect
+            <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-sm tracking-[0.2em] uppercase font-body">
+              <span className="text-foreground font-semibold">Aung Myint Oo</span>
+              <span className="text-orange-500"> · Founding Engineer · AI Product Architect</span>
             </span>
           </motion.div>
 
