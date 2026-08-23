@@ -4,16 +4,16 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Procedural WebGL backdrop for the hero: three light streams flowing in one
- * direction — domain expertise, the AI fleet, and infrastructure converging
- * into one shipped product.
+ * direction — the problem, the build, and the running product converging.
  *
  * Adapted from ThreeUI's StreamConvergenceBackground (MIT, © Meng To,
  * github.com/MengTo/threeui) with the streams re-colored to the site's ember
  * palette in the fragment shader — a single hue-rotate filter can't map three
  * differently-mixed streams into one warm family.
  *
- * Falls back to the previous static gradient blob before hydration and for
- * visitors who prefer reduced motion.
+ * Visitors who prefer reduced motion get a single frozen frame of the same
+ * scene — the identity stays, only the motion goes. If WebGL is unavailable
+ * the previous static gradient glow renders instead.
  */
 
 const VERTEX_SHADER = `
@@ -66,6 +66,8 @@ const FRAGMENT_SHADER = `
 
 const SPEED = 0.55;
 const FIDELITY = 0.65;
+// Shader time for the frozen reduced-motion frame (~30s into the loop)
+const STATIC_TIME = 1.65;
 
 function compileShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader {
   const shader = gl.createShader(type);
@@ -103,7 +105,7 @@ export function HeroStreams() {
     return () => query.removeEventListener("change", handleChange);
   }, []);
 
-  const active = mounted && !reducedMotion;
+  const active = mounted && !webglFailed;
 
   useEffect(() => {
     if (!active) return;
@@ -147,6 +149,17 @@ export function HeroStreams() {
     let frame = 0;
     let visible = true;
 
+    const drawFrame = (shaderTime: number) => {
+      gl.uniform1f(timeUniform, shaderTime);
+      gl.uniform1f(fidelityUniform, FIDELITY);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+    };
+
+    const render = (time: number) => {
+      drawFrame(time * 3e-4 * SPEED);
+      frame = visible && !document.hidden ? requestAnimationFrame(render) : 0;
+    };
+
     const resize = () => {
       const rect = container.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -154,42 +167,41 @@ export function HeroStreams() {
       canvas.height = Math.max(1, Math.round(rect.height * dpr));
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(resolutionUniform, canvas.width, canvas.height);
-    };
-
-    const render = (time: number) => {
-      gl.uniform1f(timeUniform, time * 3e-4 * SPEED);
-      gl.uniform1f(fidelityUniform, FIDELITY);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      frame = visible && !document.hidden ? requestAnimationFrame(render) : 0;
+      if (reducedMotion) drawFrame(STATIC_TIME);
     };
 
     const resizeObserver = new ResizeObserver(resize);
-    const intersectionObserver = new IntersectionObserver(([entry]) => {
-      visible = entry?.isIntersecting ?? true;
-      if (visible && !frame) frame = requestAnimationFrame(render);
-      if (!visible && frame) {
-        cancelAnimationFrame(frame);
-        frame = 0;
-      }
-    });
-
     resizeObserver.observe(container);
-    intersectionObserver.observe(container);
     resize();
-    frame = requestAnimationFrame(render);
+
+    let intersectionObserver: IntersectionObserver | null = null;
+    if (reducedMotion) {
+      drawFrame(STATIC_TIME);
+    } else {
+      intersectionObserver = new IntersectionObserver(([entry]) => {
+        visible = entry?.isIntersecting ?? true;
+        if (visible && !frame) frame = requestAnimationFrame(render);
+        if (!visible && frame) {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
+      });
+      intersectionObserver.observe(container);
+      frame = requestAnimationFrame(render);
+    }
 
     return () => {
       if (frame) cancelAnimationFrame(frame);
       resizeObserver.disconnect();
-      intersectionObserver.disconnect();
+      intersectionObserver?.disconnect();
       gl.deleteBuffer(buffer);
       gl.deleteShader(vertex);
       gl.deleteShader(fragment);
       gl.deleteProgram(program);
     };
-  }, [active]);
+  }, [active, reducedMotion]);
 
-  if (!active || webglFailed) {
+  if (!active) {
     return <StaticGlow />;
   }
 

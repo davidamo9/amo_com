@@ -38,10 +38,10 @@ export function Hero() {
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1]"
           >
             <TextReveal className="block text-foreground" delay={0.5}>
-              You bring the domain expertise.
+              You bring the problem.
             </TextReveal>
             <TextReveal className="block text-foreground" delay={0.8}>
-              I build the product —
+              I build the solution —
             </TextReveal>
             <TextReveal className="block text-orange-500" delay={1.1}>
               end to end.
@@ -55,9 +55,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
           >
-            Founding engineer and technical partner in Singapore. Architecture, AI systems,
-            infrastructure, launch, and everything after — one person who owns the whole journey.
-            Currently building at{" "}
+            Technical partner in Singapore. An idea you can&apos;t build, a workflow stuck in
+            the past, a venture that needs its technical half — I take it from first
+            conversation to production, and run it after. Currently building at{" "}
             <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
 
