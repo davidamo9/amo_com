@@ -193,9 +193,7 @@ export default function RootLayout({
             {children}
           </SmoothScrollProvider>
         </ThemeProvider>
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        )}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? "G-EK3N131XRB"} />
       </body>
     </html>
   );
