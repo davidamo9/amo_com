@@ -3,6 +3,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        // Canonical host: send www to the apex domain
+        source: "/:path*",
+        has: [{ type: "host", value: "www.aungmyintoo.com" }],
+        destination: "https://aungmyintoo.com/:path*",
+        permanent: true,
+      },
+      {
         // SecondBrain was merged into the amoOS case study
         source: "/secondbrain",
         destination: "/amoos",
