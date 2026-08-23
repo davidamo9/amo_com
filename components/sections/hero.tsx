@@ -83,6 +83,17 @@ export function Hero() {
                 Let&apos;s Talk
               </a>
             </MagneticButton>
+
+            <a
+              href="#factory"
+              className="inline-flex items-center gap-2.5 px-2 py-2 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-orange-500 transition-colors duration-300"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-60 animate-ping motion-reduce:animate-none" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
+              </span>
+              watch my AI fleet ship code
+            </a>
           </motion.div>
 
           {/* Social Links */}
