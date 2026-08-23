@@ -17,7 +17,7 @@
 
 ## Expertise
 
-AI agent fleets and multi-agent orchestration, MCP (Model Context Protocol) servers, LLM pipelines, RAG systems, vector search, FastAPI, Next.js, TypeScript, Python, PostgreSQL, AWS, Cloudflare, CI/CD, production operations, computer vision, robotics.
+AI agent fleets and multi-agent orchestration, hosted remote MCP (Model Context Protocol) servers (86 tools in production, usable by Claude, Codex, Manus, or any MCP client), real-time meeting AI (bots that join live video calls, present, listen, and answer by name), agentic chat with governed writes and audit trails, LLM pipelines, RAG systems, vector search, FastAPI, Next.js, TypeScript, Python, PostgreSQL, AWS, Cloudflare, CI/CD, production operations, computer vision, robotics.
 
 ## Key pages
 
