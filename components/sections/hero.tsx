@@ -23,7 +23,7 @@ export function Hero() {
             className="mb-8"
           >
             <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-orange-500 text-sm tracking-[0.2em] uppercase font-body">
-              Founding Engineer · AI Product Architect
+              Aung Myint Oo · Founding Engineer · AI Product Architect
             </span>
           </motion.div>
 
