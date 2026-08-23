@@ -5,10 +5,10 @@ import { useRef } from "react";
 import { CountUp } from "@/components/animations/CountUp";
 
 const proofPoints = [
-  { value: 8, suffix: "", label: "Open-Source & Shipped Projects", href: "#work" },
+  { value: 10, suffix: "+", label: "Products Shipped End to End", href: "#work" },
   { value: 4, suffix: "", label: "Countries with Live Deployments", href: "#ventures" },
-  { value: 3, suffix: "", label: "AI SaaS Built from Scratch", href: "#work" },
-  { value: 2, suffix: "", label: "Ventures as Founding Engineer", href: "#ventures" },
+  { value: 3, suffix: "", label: "AI SaaS Built from 0 to 1", href: "#work" },
+  { value: 11, suffix: "", label: "Projects Run Through My AI Factory", href: "#work" },
 ];
 
 export function ProofBar() {

@@ -9,7 +9,7 @@ const ventures = [
     company: "Salesbugle",
     role: "Founding Engineer & Technical Lead",
     period: "Oct 2025 – Present",
-    summary: "Built the backend and AI pipeline for a sales coaching SaaS — from empty repo to production with paying customers.",
+    summary: "Built the backend, AI pipeline, and infrastructure for a sales coaching SaaS — from empty repo to production with paying customers.",
     bullets: [
       "Backend: FastAPI, PostgreSQL, AWS ECS with multi-tenant data isolation",
       "AI pipeline: LLM-based conversation analysis with structured memory (vector + relational)",
@@ -18,17 +18,20 @@ const ventures = [
     tags: ["Python", "FastAPI", "PostgreSQL", "AWS", "Next.js", "TypeScript", "LLM", "RAG"],
     link: "https://salesbugle.com",
   },
+];
+
+const engagements = [
   {
-    company: "Air Quality Monitoring Platform",
-    role: "Solo Engineer",
-    period: "Jan 2026 – Present",
-    summary: "Building the MVP for an air quality monitoring platform — ingesting sensor data, running predictions, serving a dashboard.",
-    bullets: [
-      "Sensor ingestion pipeline with time-series storage and anomaly detection",
-      "Predictive maintenance models trained on real air quality operational data",
-      "Backend, infrastructure, and deployment — shipping solo",
-    ],
+    name: "Climate-Tech Intelligence Platform",
+    client: "US climate-tech company",
+    summary: "Architecture and end-to-end MVP for a hardware-agnostic monitoring and predictive intelligence platform — sensor ingestion, time-series processing, anomaly detection, and an analytics dashboard. Shipped solo.",
     tags: ["Python", "AI/ML", "IoT", "Time-Series", "Cloud Infrastructure"],
+  },
+  {
+    name: "Property Content Brand",
+    client: "Singapore property agent collective",
+    summary: "Full product build: content site with self-service CMS, curated article pipeline, lead capture with email notifications, and SEO/AEO groundwork — designed, built, and launched end to end on edge infrastructure.",
+    tags: ["Next.js", "Cloudflare", "CMS", "Lead Capture", "SEO"],
   },
 ];
 
@@ -67,7 +70,7 @@ export function Ventures() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-orange-500 text-sm tracking-[0.3em] uppercase mb-4 block font-body"
             >
-              Ventures
+              Track Record
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -138,6 +141,43 @@ export function Ventures() {
                 </div>
               </motion.div>
             ))}
+
+            {/* Independent & client engagements */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <span className="block text-xs text-muted-foreground uppercase tracking-wider font-body mb-4">
+                Independent & Client Engagements
+              </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {engagements.map((engagement) => (
+                  <div
+                    key={engagement.name}
+                    className="bg-card border border-border rounded-2xl p-6 md:p-8 hover:border-orange-500/20 transition-all duration-300"
+                  >
+                    <h4 className="font-display text-lg font-semibold text-foreground">
+                      {engagement.name}
+                    </h4>
+                    <p className="text-orange-500 text-sm font-body mt-1 mb-3">{engagement.client}</p>
+                    <p className="text-muted-foreground text-sm font-body mb-5 leading-relaxed">
+                      {engagement.summary}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {engagement.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs rounded-full bg-secondary border border-border text-muted-foreground font-body"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
             {/* Previously */}
             <motion.div

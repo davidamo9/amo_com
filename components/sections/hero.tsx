@@ -25,7 +25,7 @@ export function Hero() {
             className="mb-8"
           >
             <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-orange-500 text-sm tracking-[0.2em] uppercase font-body">
-              Founding Engineer
+              Founding Engineer · AI Product Architect
             </span>
           </motion.div>
 
@@ -37,13 +37,13 @@ export function Hero() {
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1]"
           >
             <TextReveal className="block text-foreground" delay={0.5}>
-              I build the backend,
+              You bring the domain expertise.
             </TextReveal>
             <TextReveal className="block text-foreground" delay={0.8}>
-              the AI pipeline, and
+              I build the product —
             </TextReveal>
             <TextReveal className="block text-orange-500" delay={1.1}>
-              the infrastructure.
+              end to end.
             </TextReveal>
           </motion.h1>
 
@@ -54,7 +54,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
           >
-            Founding engineer based in Singapore. Currently building at{" "}
+            Founding engineer and technical partner in Singapore. Architecture, AI systems,
+            infrastructure, launch, and everything after — one person who owns the whole journey.
+            Currently building at{" "}
             <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
 

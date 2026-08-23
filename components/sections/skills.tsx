@@ -9,7 +9,7 @@ const skillCategories = [
     title: "AI & LLM Systems",
     icon: Brain,
     description: "Design and ship production LLM pipelines — from RAG retrieval and multi-agent orchestration to semantic search and memory systems.",
-    skills: ["LLM Orchestration", "RAG Pipelines", "Multi-Agent Systems", "Vector Databases", "Semantic Search", "Prompt Engineering", "LangChain"],
+    skills: ["LLM Orchestration", "AI Agent Fleets", "MCP Servers", "RAG Pipelines", "Multi-Agent Systems", "Vector Databases", "Semantic Search"],
   },
   {
     title: "Backend & Cloud",

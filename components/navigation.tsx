@@ -6,11 +6,12 @@ import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 
 const navItems = [
-  { name: "What I Do", href: "#what-i-do" },
-  { name: "Ventures", href: "#ventures" },
-  { name: "Work", href: "#work" },
-  { name: "Expertise", href: "#expertise" },
-  { name: "Contact", href: "#contact" },
+  { name: "What I Do", href: "/#what-i-do" },
+  { name: "Track Record", href: "/#ventures" },
+  { name: "Work", href: "/#work" },
+  { name: "Services", href: "/#services" },
+  { name: "Notes", href: "/notes" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export function Navigation() {
@@ -38,7 +39,7 @@ export function Navigation() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <MagneticButton strength={0.2}>
-            <a href="#home" className="font-display text-2xl font-bold text-foreground hover:text-orange-500 transition-colors duration-300">
+            <a href="/#home" className="font-display text-2xl font-bold text-foreground hover:text-orange-500 transition-colors duration-300">
               AMO
             </a>
           </MagneticButton>
@@ -61,7 +62,7 @@ export function Navigation() {
           <div className="hidden md:block">
             <MagneticButton>
               <a
-                href="#contact"
+                href="/#contact"
                 className="px-5 py-2.5 border border-orange-500/50 text-orange-500 rounded-full text-sm font-medium hover:bg-orange-500/10 transition-all duration-300 shimmer-hover"
               >
                 Let&apos;s Talk
@@ -102,7 +103,7 @@ export function Navigation() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/#contact"
               className="inline-block mt-4 px-6 py-3 border border-orange-500/50 text-orange-500 rounded-full text-sm font-medium hover:bg-orange-500/10 transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(false)}
             >

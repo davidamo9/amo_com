@@ -6,24 +6,24 @@ import { Brain, Code2, Users, Wrench } from "lucide-react";
 
 const capabilities = [
   {
-    icon: Brain,
-    title: "AI Product Architecture",
-    description: "RAG systems, multi-agent orchestration, vector databases, layered memory systems, and model-agnostic LLM pipelines.",
-  },
-  {
     icon: Code2,
-    title: "Full-Stack Engineering",
-    description: "Next.js, FastAPI, PostgreSQL, AWS, CI/CD pipelines, and cloud-native deployment infrastructure.",
+    title: "Product, 0 to 1",
+    description: "From ambiguous idea to shipped product — scoping, architecture, build, launch. Done for sales tech, climate tech, and my own products.",
   },
   {
-    icon: Users,
-    title: "Technical Leadership",
-    description: "Architecture decisions, hiring foundations, production operations, and end-to-end product ownership.",
+    icon: Brain,
+    title: "AI & Agentic Systems",
+    description: "RAG systems, multi-agent orchestration, AI agent fleets, vector search, and LLM pipelines that hold up under real production usage.",
   },
   {
     icon: Wrench,
-    title: "Developer Tooling & Automation",
-    description: "MCP servers, CLI tools, PyPI packages, Chrome extensions, CI/CD pipelines, and workflow automation.",
+    title: "Infrastructure & Operations",
+    description: "Cloud architecture, CI/CD, observability, and cost control — plus the unglamorous production ops that keep products alive after launch.",
+  },
+  {
+    icon: Users,
+    title: "Founder & Domain-Expert Partnership",
+    description: "I translate deep industry knowledge into product decisions. You stay the expert — technology stops being your bottleneck.",
   },
 ];
 
@@ -60,9 +60,9 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              I build the technical foundation
+              More than an engineer —
               <br className="hidden md:block" />
-              <span className="text-orange-500"> for AI-native companies.</span>
+              <span className="text-orange-500"> an end-to-end product partner.</span>
             </motion.h2>
           </div>
 
@@ -96,8 +96,9 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center text-lg text-muted-foreground font-body max-w-3xl mx-auto leading-relaxed"
           >
-            I partner with domain founders who have deep industry expertise but need a technical co-founder
-            to transform their vision into scalable, AI-powered products with real-world traction.
+            I partner with founders and domain experts who know their industry deeply but need one
+            person to own everything technical. My job is to unblock you: turn what you know into a
+            product people can buy — and keep it running while you grow the business.
           </motion.p>
         </motion.div>
       </div>

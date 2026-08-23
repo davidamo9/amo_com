@@ -89,8 +89,8 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              Have a project that needs{" "}
-              <span className="text-orange-500">an engineer?</span>
+              Have a product that needs{" "}
+              <span className="text-orange-500">an owner?</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -98,8 +98,9 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-muted-foreground max-w-2xl mx-auto font-body"
             >
-              Open to founding engineer roles, contract work, and early-stage
-              technical partnerships. Happy to chat about what you&apos;re building.
+              Open to founding engineer roles, fractional technical co-founder engagements,
+              and end-to-end builds. Tell me what you&apos;re building — I&apos;ll tell you
+              honestly whether I&apos;m the right person for it.
             </motion.p>
           </div>
 

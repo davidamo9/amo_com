@@ -12,12 +12,13 @@ export function Footer() {
   ];
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "What I Do", href: "#what-i-do" },
-    { name: "Ventures", href: "#ventures" },
-    { name: "Work", href: "#work" },
-    { name: "Expertise", href: "#expertise" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/#home" },
+    { name: "What I Do", href: "/#what-i-do" },
+    { name: "Track Record", href: "/#ventures" },
+    { name: "Work", href: "/#work" },
+    { name: "Services", href: "/#services" },
+    { name: "Notes", href: "/notes" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -28,11 +29,11 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
             {/* Brand */}
             <div>
-              <a href="#home" className="font-display text-3xl font-bold text-foreground hover:text-orange-500 transition-colors duration-300 mb-4 block">
+              <a href="/#home" className="font-display text-3xl font-bold text-foreground hover:text-orange-500 transition-colors duration-300 mb-4 block">
                 AMO
               </a>
               <p className="text-muted-foreground font-body max-w-xs">
-                AI Systems Architect. Founding Engineer. Building venture-grade products from 0 to 1.
+                AI Product Architect. Founding Engineer. I build products end to end — from first idea to production operations.
               </p>
             </div>
 
