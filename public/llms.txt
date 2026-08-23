@@ -1,6 +1,6 @@
 # Aung Myint Oo - AI Product Architect & Founding Engineer
 
-> Aung Myint Oo (David) is an AI product architect and founding engineer based in Singapore. He takes AI products from idea to production end to end (architecture, AI and agentic systems, infrastructure, launch, and operations) and partners with founders and domain experts to turn industry expertise into working AI products. The first conversation is always free.
+> Aung Myint Oo (AMO) is an AI product architect and founding engineer based in Singapore. He takes AI products from idea to production end to end (architecture, AI and agentic systems, infrastructure, launch, and operations) and partners with founders and domain experts to turn industry expertise into working AI products. The first conversation is always free.
 
 ## Who he is
 

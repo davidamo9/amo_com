@@ -81,7 +81,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Aung Myint Oo",
-    alternateName: ["David Aung Myint Oo", "David Amo"],
+    alternateName: ["AMO"],
     url: "https://aungmyintoo.com",
     sameAs: [
       "https://github.com/davidamo9",
