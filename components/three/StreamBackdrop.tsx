@@ -3,17 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Procedural WebGL backdrop for the hero: three light streams flowing in one
- * direction — the problem, the build, and the running product converging.
+ * Full-page procedural WebGL backdrop: three ember light streams flowing in
+ * one direction, fixed behind the whole page. As the visitor scrolls, the
+ * scene evolves smoothly: the streams rotate and drift, the palette deepens
+ * from gold and orange into darker ember, the field dims through the middle
+ * sections so text stays legible, then warms back up toward the contact
+ * section.
  *
  * Adapted from ThreeUI's StreamConvergenceBackground (MIT, © Meng To,
- * github.com/MengTo/threeui) with the streams re-colored to the site's ember
- * palette in the fragment shader — a single hue-rotate filter can't map three
+ * github.com/MengTo/threeui) with the palette and scroll behavior baked into
+ * the fragment shader, since a single hue-rotate filter can't map three
  * differently-mixed streams into one warm family.
  *
- * Visitors who prefer reduced motion get a single frozen frame of the same
- * scene — the identity stays, only the motion goes. If WebGL is unavailable
- * the previous static gradient glow renders instead.
+ * Visitors who prefer reduced motion get a still scene that only responds to
+ * their own scrolling. If WebGL is unavailable a static gradient glow
+ * renders instead.
  */
 
 const VERTEX_SHADER = `
@@ -30,6 +34,7 @@ const FRAGMENT_SHADER = `
   uniform float u_time;
   uniform vec2 u_resolution;
   uniform float u_fidelity;
+  uniform float u_scroll;
   varying vec2 vUv;
 
   mat2 rotate2d(float angle) {
@@ -39,26 +44,37 @@ const FRAGMENT_SHADER = `
   void main() {
     vec2 p = vUv * 2.0 - 1.0;
     p.x *= u_resolution.x / u_resolution.y;
-    p = rotate2d(0.55) * p;
+    p = rotate2d(0.55 + u_scroll * 0.8) * p;
 
-    // Ember family: gold, brand orange (#F97316), deep red-orange
-    vec3 streamColors[3];
-    streamColors[0] = vec3(0.98, 0.62, 0.10);
-    streamColors[1] = vec3(0.976, 0.451, 0.086);
-    streamColors[2] = vec3(0.85, 0.22, 0.05);
+    // Ember family at the top of the page: gold, brand orange (#F97316),
+    // deep red-orange. Each stream sinks toward darker ember as you scroll.
+    vec3 topColors[3];
+    topColors[0] = vec3(0.98, 0.62, 0.10);
+    topColors[1] = vec3(0.976, 0.451, 0.086);
+    topColors[2] = vec3(0.85, 0.22, 0.05);
+
+    vec3 deepColors[3];
+    deepColors[0] = vec3(0.85, 0.34, 0.05);
+    deepColors[1] = vec3(0.80, 0.20, 0.06);
+    deepColors[2] = vec3(0.55, 0.10, 0.12);
 
     vec3 color = vec3(0.0);
     float spread = 0.06 * (0.3 + u_fidelity * 0.7);
 
     for (int i = 0; i < 3; i++) {
       float offset = float(1 - i) * spread;
-      float y = p.y + offset + (sin(p.x * 2.5 - u_time * 1.5) * 0.12);
-      float wave = smoothstep(0.85, 0.99, sin(y * 6.0 + u_time * 2.0) * 0.5 + 0.5);
-      color += wave * streamColors[i] * 0.72;
+      float y = p.y + offset + (sin(p.x * 2.5 - u_time * 1.5 + u_scroll * 3.0) * 0.12);
+      float wave = smoothstep(0.85, 0.99, sin(y * 6.0 + u_time * 2.0 - u_scroll * 6.0) * 0.5 + 0.5);
+      color += wave * mix(topColors[i], deepColors[i], u_scroll) * 0.72;
     }
 
+    // Bright at the hero, subdued through the reading sections, warming
+    // again toward the end of the page.
+    float envelope = mix(1.0, 0.35, smoothstep(0.04, 0.30, u_scroll));
+    envelope += 0.35 * smoothstep(0.72, 1.0, u_scroll);
+
     float vignette = exp(-length(vUv * 2.0 - 1.0) * 0.8);
-    color *= vignette;
+    color *= vignette * envelope;
 
     gl_FragColor = vec4(color, 1.0);
   }
@@ -66,30 +82,36 @@ const FRAGMENT_SHADER = `
 
 const SPEED = 0.55;
 const FIDELITY = 0.65;
-// Shader time for the frozen reduced-motion frame (~30s into the loop)
+// Shader time for the reduced-motion still scene
 const STATIC_TIME = 1.65;
 
 function compileShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader {
   const shader = gl.createShader(type);
-  if (!shader) throw new Error("Unable to create hero stream shader");
+  if (!shader) throw new Error("Unable to create stream backdrop shader");
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    throw new Error(gl.getShaderInfoLog(shader) ?? "Hero stream shader compilation failed");
+    throw new Error(gl.getShaderInfoLog(shader) ?? "Stream backdrop shader compilation failed");
   }
   return shader;
 }
 
+function scrollProgress(): number {
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - window.innerHeight;
+  if (max <= 0) return 0;
+  return Math.min(1, Math.max(0, window.scrollY / max));
+}
+
 function StaticGlow() {
   return (
-    <div
-      className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[180px] hidden md:block"
-      aria-hidden="true"
-    />
+    <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
+      <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[180px] hidden md:block" />
+    </div>
   );
 }
 
-export function HeroStreams() {
+export function StreamBackdrop() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -127,7 +149,7 @@ export function HeroStreams() {
     gl.attachShader(program, fragment);
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      throw new Error(gl.getProgramInfoLog(program) ?? "Hero stream program link failed");
+      throw new Error(gl.getProgramInfoLog(program) ?? "Stream backdrop program link failed");
     }
     gl.useProgram(program);
 
@@ -145,19 +167,25 @@ export function HeroStreams() {
     const timeUniform = gl.getUniformLocation(program, "u_time");
     const resolutionUniform = gl.getUniformLocation(program, "u_resolution");
     const fidelityUniform = gl.getUniformLocation(program, "u_fidelity");
+    const scrollUniform = gl.getUniformLocation(program, "u_scroll");
 
     let frame = 0;
-    let visible = true;
+    let scrollRaf = 0;
+    let scrollCurrent = scrollProgress();
 
-    const drawFrame = (shaderTime: number) => {
+    const drawFrame = (shaderTime: number, scroll: number) => {
       gl.uniform1f(timeUniform, shaderTime);
       gl.uniform1f(fidelityUniform, FIDELITY);
+      gl.uniform1f(scrollUniform, scroll);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     };
 
     const render = (time: number) => {
-      drawFrame(time * 3e-4 * SPEED);
-      frame = visible && !document.hidden ? requestAnimationFrame(render) : 0;
+      // Lenis already smooths the scroll; the lerp adds a slow settle so the
+      // backdrop trails the content instead of snapping with it
+      scrollCurrent += (scrollProgress() - scrollCurrent) * 0.06;
+      drawFrame(time * 3e-4 * SPEED, scrollCurrent);
+      frame = document.hidden ? 0 : requestAnimationFrame(render);
     };
 
     const resize = () => {
@@ -167,33 +195,41 @@ export function HeroStreams() {
       canvas.height = Math.max(1, Math.round(rect.height * dpr));
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(resolutionUniform, canvas.width, canvas.height);
-      if (reducedMotion) drawFrame(STATIC_TIME);
+      if (reducedMotion) drawFrame(STATIC_TIME, scrollProgress());
     };
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
     resize();
 
-    let intersectionObserver: IntersectionObserver | null = null;
-    if (reducedMotion) {
-      drawFrame(STATIC_TIME);
-    } else {
-      intersectionObserver = new IntersectionObserver(([entry]) => {
-        visible = entry?.isIntersecting ?? true;
-        if (visible && !frame) frame = requestAnimationFrame(render);
-        if (!visible && frame) {
-          cancelAnimationFrame(frame);
-          frame = 0;
-        }
+    const handleScroll = () => {
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0;
+        drawFrame(STATIC_TIME, scrollProgress());
       });
-      intersectionObserver.observe(container);
+    };
+
+    const handleVisibility = () => {
+      if (!reducedMotion && !document.hidden && !frame) {
+        frame = requestAnimationFrame(render);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    if (reducedMotion) {
+      drawFrame(STATIC_TIME, scrollCurrent);
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    } else {
       frame = requestAnimationFrame(render);
     }
 
     return () => {
       if (frame) cancelAnimationFrame(frame);
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("scroll", handleScroll);
       resizeObserver.disconnect();
-      intersectionObserver?.disconnect();
       gl.deleteBuffer(buffer);
       gl.deleteShader(vertex);
       gl.deleteShader(fragment);
@@ -208,7 +244,7 @@ export function HeroStreams() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 mix-blend-screen pointer-events-none opacity-50"
+      className="fixed inset-0 -z-10 mix-blend-screen pointer-events-none opacity-50"
       aria-hidden="true"
     >
       <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />

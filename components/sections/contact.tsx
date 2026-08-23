@@ -99,7 +99,7 @@ export function Contact() {
               className="text-muted-foreground max-w-2xl mx-auto font-body"
             >
               Maybe it&apos;s an idea you don&apos;t know how to bring to life, or a process
-              that needs a modern solution. Tell me about it — the first conversation is
+              that needs a modern solution. Tell me about it. The first conversation is
               free, and you&apos;ll get an honest take either way.
             </motion.p>
           </div>
@@ -190,7 +190,7 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-8 space-y-6">
-                {/* Honeypot field — hidden from humans, bots fill it */}
+                {/* Honeypot field: hidden from humans, bots fill it */}
                 <div className="absolute -left-[9999px]" aria-hidden="true">
                   <label htmlFor="website">Website</label>
                   <input

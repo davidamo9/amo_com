@@ -9,7 +9,7 @@ const ventures = [
     company: "Salesbugle",
     role: "Founding Engineer & Technical Lead",
     period: "Oct 2025 – Present",
-    summary: "Built the backend, AI pipeline, and infrastructure for a sales coaching SaaS — from empty repo to production with paying customers.",
+    summary: "Built the backend, AI pipeline, and infrastructure for a sales coaching SaaS, from empty repo to production with paying customers.",
     bullets: [
       "Backend: FastAPI, PostgreSQL, AWS ECS with multi-tenant data isolation",
       "AI pipeline: LLM-based conversation analysis with structured memory (vector + relational)",
@@ -24,13 +24,13 @@ const engagements = [
   {
     name: "Climate-Tech Intelligence Platform",
     client: "US climate-tech company",
-    summary: "Architecture and end-to-end MVP for a hardware-agnostic monitoring and predictive intelligence platform — sensor ingestion, time-series processing, anomaly detection, and an analytics dashboard. Shipped solo.",
+    summary: "Architecture and end-to-end MVP for a hardware-agnostic monitoring and predictive intelligence platform: sensor ingestion, time-series processing, anomaly detection, and an analytics dashboard. Shipped solo.",
     tags: ["Python", "AI/ML", "IoT", "Time-Series", "Cloud Infrastructure"],
   },
   {
     name: "Property Content Brand",
     client: "Singapore property agent collective",
-    summary: "Full product build: content site with self-service CMS, curated article pipeline, lead capture with email notifications, and SEO/AEO groundwork — designed, built, and launched end to end on edge infrastructure.",
+    summary: "Full product build: content site with self-service CMS, curated article pipeline, lead capture with email notifications, and SEO/AEO groundwork. Designed, built, and launched end to end on edge infrastructure.",
     tags: ["Next.js", "Cloudflare", "CMS", "Lead Capture", "SEO"],
   },
 ];
@@ -54,7 +54,7 @@ export function Ventures() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="ventures" className="py-24 md:py-32 bg-background relative">
+    <section id="ventures" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 relative">
         <motion.div
           ref={ref}

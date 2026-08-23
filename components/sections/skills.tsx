@@ -8,7 +8,7 @@ const skillCategories = [
   {
     title: "AI & LLM Systems",
     icon: Brain,
-    description: "Design and ship production LLM pipelines — from RAG retrieval and multi-agent orchestration to semantic search and memory systems.",
+    description: "Design and ship production LLM pipelines, from RAG retrieval and multi-agent orchestration to semantic search and memory systems.",
     skills: ["LLM Orchestration", "AI Agent Fleets", "MCP Servers", "RAG Pipelines", "Multi-Agent Systems", "Vector Databases", "Semantic Search"],
   },
   {
@@ -20,13 +20,13 @@ const skillCategories = [
   {
     title: "Frontend & Product",
     icon: Monitor,
-    description: "Ship polished, performant interfaces — from real-time dashboards and Chrome extensions to WebSocket-driven collaborative features.",
+    description: "Ship polished, performant interfaces, from real-time dashboards and Chrome extensions to WebSocket-driven collaborative features.",
     skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "WebSockets", "Zustand", "Playwright"],
   },
   {
     title: "Robotics & Systems",
     icon: Cpu,
-    description: "Engineer low-level systems combining computer vision, speech processing, and robotic control — deployed in production across 4 countries.",
+    description: "Engineer low-level systems combining computer vision, speech processing, and robotic control, deployed in production across 4 countries.",
     skills: ["Computer Vision", "OpenCV", "faster-whisper", "GStreamer", "Delta Robots", "Sensor Fusion", "ROS"],
   },
 ];

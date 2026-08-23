@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: "Aung Myint Oo - AI Product Architect | Founding Engineer",
     template: "%s | Aung Myint Oo",
   },
-  description: "I take AI products from idea to production, end to end — architecture, AI systems, infrastructure, and operations. Founding engineer at Salesbugle. I partner with founders and domain experts to turn industry expertise into AI-native products.",
+  description: "I take AI products from idea to production, end to end: architecture, AI systems, infrastructure, and operations. Founding engineer at Salesbugle. I partner with founders and domain experts to turn industry expertise into AI-native products.",
   keywords: [
     "Aung Myint Oo",
     "Founding Engineer",
@@ -88,7 +88,7 @@ export default function RootLayout({
       "https://www.linkedin.com/in/aung-myint-oo99/",
     ],
     jobTitle: "AI Product Architect & Founding Engineer",
-    description: "AI product architect and founding engineer in Singapore who takes AI products from idea to production end to end — architecture, agentic systems, infrastructure, and operations. Builds with AI agent fleets and partners with founders and domain experts to solve problems with modern AI solutions.",
+    description: "AI product architect and founding engineer in Singapore who takes AI products from idea to production end to end: architecture, agentic systems, infrastructure, and operations. Builds with AI agent fleets and partners with founders and domain experts to solve problems with modern AI solutions.",
     address: {
       "@type": "PostalAddress",
       addressCountry: "SG",
@@ -129,7 +129,7 @@ export default function RootLayout({
   const servicesJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Aung Myint Oo — AI Product Engineering",
+    name: "Aung Myint Oo - AI Product Engineering",
     url: "https://aungmyintoo.com",
     areaServed: ["Singapore", "Remote"],
     founder: { "@type": "Person", name: "Aung Myint Oo" },

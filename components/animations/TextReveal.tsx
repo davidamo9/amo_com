@@ -29,7 +29,7 @@ export function TextReveal({
     const element = textRef.current;
     if (!element) return;
 
-    // Split text into words of characters — chars animate individually, but
+    // Split text into words of characters: chars animate individually, but
     // each word is an unbreakable unit so lines only wrap at word boundaries
     const text = children;
     element.innerHTML = text

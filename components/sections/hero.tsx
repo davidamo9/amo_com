@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { TextReveal } from "@/components/animations/TextReveal";
-import { HeroStreams } from "@/components/three/HeroStreams";
 
 export function Hero() {
   return (
@@ -12,8 +11,6 @@ export function Hero() {
       id="home"
       className="min-h-screen flex items-center relative overflow-hidden"
     >
-      {/* Procedural stream backdrop */}
-      <HeroStreams />
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
@@ -41,7 +38,7 @@ export function Hero() {
               You bring the problem.
             </TextReveal>
             <TextReveal className="block text-foreground" delay={0.8}>
-              I build the solution —
+              I build the solution,
             </TextReveal>
             <TextReveal className="block text-orange-500" delay={1.1}>
               end to end.
@@ -56,7 +53,7 @@ export function Hero() {
             className="text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
           >
             Technical partner in Singapore. An idea you can&apos;t build, a workflow stuck in
-            the past, a venture that needs its technical half — I take it from first
+            the past, a venture that needs its technical half. I take it from first
             conversation to production, and run it after. Currently building at{" "}
             <a href="https://salesbugle.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
@@ -135,8 +132,6 @@ export function Hero() {
         </a>
       </motion.div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }

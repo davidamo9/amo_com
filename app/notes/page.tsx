@@ -8,7 +8,7 @@ import { getAllNotes } from "@/lib/notes";
 export const metadata: Metadata = {
   title: "Notes",
   description:
-    "Build-in-public notes on AI agents, product engineering, and running a personal software factory — by Aung Myint Oo.",
+    "Build-in-public notes on AI agents, product engineering, and running a personal software factory, by Aung Myint Oo.",
 };
 
 function formatDate(isoDate: string): string {

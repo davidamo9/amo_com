@@ -8,7 +8,7 @@ const capabilities = [
   {
     icon: Code2,
     title: "Product, 0 to 1",
-    description: "From ambiguous idea to shipped product — scoping, architecture, build, launch. Done for sales tech, climate tech, and my own products.",
+    description: "From ambiguous idea to shipped product: scoping, architecture, build, launch. Done for sales tech, climate tech, and my own products.",
   },
   {
     icon: Brain,
@@ -18,12 +18,12 @@ const capabilities = [
   {
     icon: Wrench,
     title: "Infrastructure & Operations",
-    description: "Cloud architecture, CI/CD, observability, and cost control — plus the unglamorous production ops that keep products alive after launch.",
+    description: "Cloud architecture, CI/CD, observability, and cost control, plus the unglamorous production ops that keep products alive after launch.",
   },
   {
     icon: Users,
     title: "Founder & Domain-Expert Partnership",
-    description: "I translate deep industry knowledge into product decisions. You stay the expert — technology stops being your bottleneck.",
+    description: "I translate deep industry knowledge into product decisions. You stay the expert. Technology stops being your bottleneck.",
   },
 ];
 
@@ -60,7 +60,7 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              More than an engineer —
+              More than an engineer,
               <br className="hidden md:block" />
               <span className="text-orange-500"> an end-to-end product partner.</span>
             </motion.h2>
@@ -98,7 +98,7 @@ export function About() {
           >
             I partner with founders and domain experts who know their industry deeply but need one
             person to own everything technical. My job is to unblock you: turn what you know into a
-            product people can buy — and keep it running while you grow the business.
+            product people can buy, and keep it running while you grow the business.
           </motion.p>
         </motion.div>
       </div>

@@ -126,7 +126,7 @@ export default async function NotePage({
             <div className="mt-14 pt-8 border-t border-border">
               <p className="text-muted-foreground font-body mb-4">
                 Sitting on an idea you don&apos;t know how to build, or a problem that needs a
-                modern solution? Tell me about it — the first conversation is free.
+                modern solution? Tell me about it. The first conversation is free.
               </p>
               <Link
                 href="/#contact"

@@ -9,7 +9,7 @@ const services = [
     icon: Lightbulb,
     title: "You have an idea but no way to build it",
     description:
-      "I take it from first conversation to production — scoped, architected, built, deployed, and handed over working. A real product, not a prototype that dies in a demo.",
+      "I take it from first conversation to production: scoped, architected, built, deployed, and handed over working. A real product, not a prototype that dies in a demo.",
     fit: "Usually a fixed-scope build, start to finish.",
   },
   {
@@ -23,7 +23,7 @@ const services = [
     icon: Handshake,
     title: "Deep industry knowledge, no technical partner",
     description:
-      "You know your field; I own everything technical — long term, as a partner, not an agency. You stay the expert while technology stops being your bottleneck.",
+      "You know your field; I own everything technical, long term, as a partner, not an agency. You stay the expert while technology stops being your bottleneck.",
     fit: "Usually a long-term, equity-aligned partnership.",
   },
 ];
@@ -33,7 +33,7 @@ export function Services() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 md:py-32 bg-background relative">
+    <section id="services" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 relative">
         <motion.div
           ref={ref}

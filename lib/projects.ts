@@ -19,9 +19,9 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "amoos",
-    title: "amoOS — My Personal Software Factory",
+    title: "amoOS: My Personal Software Factory",
     description:
-      "An AI operating system where I plan, dispatch, and verify — and a fleet of AI agents does the building. It runs every project I own, remembers everything it learns, and reports to me through a native macOS cockpit and Telegram.",
+      "An AI operating system where I plan, dispatch, and verify while a fleet of AI agents does the building. It runs every project I own, remembers everything it learns, and reports to me through a native macOS cockpit and Telegram.",
     status: "active",
     timeline: "Nov 2025 – Present",
     tags: ["AI Agent Fleet", "Orchestration", "Second Brain", "MCP", "FastAPI", "Next.js"],
@@ -32,35 +32,35 @@ export const projects: Project[] = [
       { label: "Factory KPIs Tracked", value: "4" },
     ],
     architecture: [
-      "A fleet of AI coding agents executes the actual work across all of my projects — my role has been reduced to planning, dispatching, and verifying",
-      "Everything the system touches — sessions, decisions, documents, forwarded links — is distilled into a living per-project wiki plus a personal knowledge base, so context compounds instead of evaporating",
+      "A fleet of AI coding agents executes the actual work across all of my projects. My role is reduced to planning, dispatching, and verifying",
+      "Everything the system touches (sessions, decisions, documents, forwarded links) is distilled into a living per-project wiki plus a personal knowledge base, so context compounds instead of evaporating",
       "Multi-surface command: a native macOS cockpit for deep work, Telegram for mobile steering and approvals, and a web dashboard for reference",
       "Frictionless capture: forward a link or a note to Telegram and it lands in the knowledge base, enriched and searchable",
       "A shared project registry, sprints, kanban, and cross-project memory search that every work session plugs into",
-      "Self-accounting: the factory measures its own utilization, yield, attention cost, and reporting speed — and answers for them",
+      "Self-accounting: the factory measures its own utilization, yield, attention cost, and reporting speed, and answers for them",
     ],
     decisions: [
       {
         decision: "Human verification gates everything the fleet ships",
-        why: "Autonomous output without trust is worthless — 'verified done, with evidence' is the unit of progress",
+        why: "Autonomous output without trust is worthless. 'Verified done, with evidence' is the unit of progress",
         tradeoff: "Throughput is capped by my review attention, which forced me to design the review experience as a first-class product",
       },
       {
         decision: "One system runs every project instead of per-project tooling",
-        why: "Memory compounds across projects — a lesson learned in one product immediately benefits the next",
+        why: "Memory compounds across projects: a lesson learned in one product immediately benefits the next",
         tradeoff: "Platform work permanently competes with product work, so scope discipline is enforced ruthlessly",
       },
       {
         decision: "The system owns the memory, not the humans or the chat logs",
         why: "An assistant that forgets is a chatbot; a system that compounds knowledge is a moat",
-        tradeoff: "Knowledge upkeep is real work — curation, deduplication, and staleness detection all had to be built",
+        tradeoff: "Knowledge upkeep is real work: curation, deduplication, and staleness detection all had to be built",
       },
     ],
     artifacts: [
       { type: "docs", label: "Build Log", url: "/notes/personal-software-factory" },
     ],
     lessons: [
-      "Once agents write the code, the bottleneck moves to deciding, verifying, and remembering — so that is what the system optimizes for.",
+      "Once agents write the code, the bottleneck moves to deciding, verifying, and remembering, so that is what the system optimizes for.",
       "AI agents are only as good as the context you hand them; a compiled, current knowledge base beats raw history every time.",
       "Trust is the real product: slower verified output is worth more than fast unverified output.",
     ],
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     decisions: [
       {
         decision: "SQLite over PostgreSQL",
-        why: "Zero-config, runs anywhere, no server process — matches developer tooling UX expectations",
+        why: "Zero-config, runs anywhere, no server process. It matches developer tooling UX expectations",
         tradeoff: "No concurrent write support, but MCP servers are single-user",
       },
       {
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     decisions: [
       {
         decision: "Four-layer noise filtering pipeline",
-        why: "Whisper hallucinates aggressively on silence and background noise — single-layer filtering is insufficient",
+        why: "Whisper hallucinates aggressively on silence and background noise, so single-layer filtering is insufficient",
         tradeoff: "Added latency from multi-pass processing, but accuracy gains justify it",
       },
       {
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     ],
     artifacts: [],
     lessons: [
-      "Whisper hallucinates aggressively on silence and background noise — the four-layer filtering pipeline was essential, not optional.",
+      "Whisper hallucinates aggressively on silence and background noise. The four-layer filtering pipeline was essential, not optional.",
       "Sliding windows with overlap give much better results than fixed non-overlapping chunks because Whisper needs context.",
       "Using the last 3 transcript segments as context prompts for subsequent windows significantly improved accuracy on domain-specific terms.",
     ],
@@ -174,7 +174,7 @@ export const projects: Project[] = [
       "PostgreSQL for persistent document storage surviving Railway redeployments",
       "Documents stored as BYTEA, FAISS index serialized via faiss.serialize_index(), chunks as JSONB",
       "Progressive conversation stages (Anonymous → Engaged → Qualified → Captured) control CTA timing",
-      "Keyword-based CRM qualification (pricing, demo, quote — 2+ signals threshold) keeps PII local",
+      "Keyword-based CRM qualification (pricing, demo, quote, with a 2+ signal threshold) keeps PII local",
     ],
     decisions: [
       {
@@ -184,13 +184,13 @@ export const projects: Project[] = [
       },
       {
         decision: "Keyword-based qualification over LLM intent detection",
-        why: "Privacy requirement — no PII sent to external LLM APIs",
+        why: "Privacy requirement: no PII sent to external LLM APIs",
         tradeoff: "Less accurate intent detection, but predictable and GDPR-safe",
       },
     ],
     artifacts: [],
     lessons: [
-      "FastEmbed (ONNX runtime) is a much better choice than sentence-transformers for production — smaller, faster, no PyTorch.",
+      "FastEmbed (ONNX runtime) is a much better choice than sentence-transformers for production: smaller, faster, no PyTorch.",
       "Keyword-based qualification is crude but predictable and privacy-safe; LLM-based detection would require sending conversation content to external APIs.",
       "Railway's postgres:// to postgresql:// URL conversion is a common gotcha that needs auto-handling.",
     ],
@@ -220,7 +220,7 @@ export const projects: Project[] = [
     decisions: [
       {
         decision: "Pre-filter before LLM evaluation",
-        why: "Claude API costs scale with content volume — simple heuristics reject 60–70% of irrelevant content cheaply",
+        why: "Claude API costs scale with content volume, and simple heuristics reject 60–70% of irrelevant content cheaply",
         tradeoff: "Some edge-case relevant content may be filtered out by heuristic rules",
       },
       {
@@ -231,9 +231,9 @@ export const projects: Project[] = [
     ],
     artifacts: [],
     lessons: [
-      "Role vs. tier is a real distinction worth getting right early — conflating 'admin' with 'enterprise tier' causes permission bugs.",
+      "Role vs. tier is a real distinction worth getting right early. Conflating 'admin' with 'enterprise tier' causes permission bugs.",
       "Reddit scraping is unreliable at scale; their API changes frequently and rate limits are aggressive.",
-      "Pre-filtering content before LLM evaluation saves significant API costs — 60–70% rejection before Claude ever sees it.",
+      "Pre-filtering content before LLM evaluation saves significant API costs: 60–70% rejection before Claude ever sees it.",
     ],
     featured: true,
   },
@@ -277,7 +277,7 @@ export const projects: Project[] = [
       { type: "package", label: "PyPI", url: "https://pypi.org/project/optics-framework/" },
     ],
     lessons: [
-      "No-code doesn't mean no complexity — the keyword abstraction hides edge cases that users still encounter.",
+      "No-code doesn't mean no complexity: the keyword abstraction hides edge cases that users still encounter.",
       "Physical robot calibration is the biggest operational cost; remote deployments need good documentation and self-calibration tooling.",
       "Computer vision (template matching) is more reliable than Appium for custom UI elements but slower and resolution-dependent.",
     ],
@@ -311,13 +311,13 @@ export const projects: Project[] = [
       },
       {
         decision: "Proof-of-concept scope (4-month thesis timeline)",
-        why: "MSc timeline limited scope — prioritized working demo over production robustness",
+        why: "MSc timeline limited scope, prioritizing a working demo over production robustness",
         tradeoff: "Not production-grade, but demonstrates the full pipeline end-to-end",
       },
     ],
     artifacts: [],
     lessons: [
-      "The gap between 'works in the lab' and 'works reliably' is enormous for physical systems — lighting, camera angles, and reflections break vision pipelines.",
+      "The gap between 'works in the lab' and 'works reliably' is enormous for physical systems: lighting, camera angles, and reflections break vision pipelines.",
       "NLP-to-robot translation needs a structured intermediate representation; going directly from text to motor commands is too fragile.",
       "Two years of robotics experience at Mozark (delta robots, CV pipelines) was the foundation that made a 4-month thesis feasible.",
     ],

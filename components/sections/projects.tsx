@@ -29,7 +29,7 @@ export function Projects() {
   const projects = getFeaturedProjects();
 
   return (
-    <section id="work" className="py-24 md:py-32 bg-background relative">
+    <section id="work" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 relative">
         <motion.div
           ref={ref}

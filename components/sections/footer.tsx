@@ -33,7 +33,7 @@ export function Footer() {
                 AMO
               </a>
               <p className="text-muted-foreground font-body max-w-xs">
-                AI Product Architect. Founding Engineer. I build products end to end — from first idea to production operations.
+                AI Product Architect. Founding Engineer. I build products end to end, from first idea to production operations.
               </p>
             </div>
 
