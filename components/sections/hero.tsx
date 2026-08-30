@@ -25,7 +25,7 @@ export function Hero() {
           >
             <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-sm tracking-[0.2em] uppercase font-body">
               <span className="text-foreground font-semibold">Aung Myint Oo</span>
-              <span className="text-orange-500"> · Founding Engineer · AI Product Architect</span>
+              <span className="text-orange-500"> · AI &amp; Robotics Engineer · Founding Engineer</span>
             </span>
           </motion.div>
 
@@ -37,11 +37,11 @@ export function Hero() {
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1]"
           >
             <TextReveal className="block text-foreground" delay={0.5}>
-              You bring the problem.
-            </TextReveal>
+              AI &amp; robotics engineer
+            </TextReveal>{" "}
             <TextReveal className="block text-foreground" delay={0.8}>
-              I build the solution,
-            </TextReveal>
+              in Singapore. Idea to production,
+            </TextReveal>{" "}
             <TextReveal className="block text-orange-500" delay={1.1}>
               end to end.
             </TextReveal>
@@ -54,9 +54,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
           >
-            Technical partner in Singapore. An idea you can&apos;t build, a workflow stuck in
-            the past, a venture that needs its technical half. I take it from first
-            conversation to production, and run it after. Currently building at{" "}
+            I build perception, agents, and learning systems that compound over time. You bring
+            the problem: an idea you can&apos;t build, a workflow stuck in the past, a venture that
+            needs its technical half. I take it from first conversation to production, and run it
+            after. Currently building at{" "}
             <a href="https://app.salesbugle.com/whats-new" target="_blank" rel="noopener noreferrer" onClick={() => track("salesbugle_outbound", { placement: "hero" })} className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
           </motion.p>
 

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 
 const navItems = [
+  { name: "About", href: "/about" },
   { name: "What I Do", href: "/#what-i-do" },
   { name: "Track Record", href: "/#ventures" },
   { name: "Work", href: "/#work" },
