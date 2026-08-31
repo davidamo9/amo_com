@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { track } from "@/lib/analytics";
@@ -109,6 +109,7 @@ export function Hero() {
             {[
               { icon: Github, href: "https://github.com/davidamo9", label: "GitHub" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/aung-myint-oo99/", label: "LinkedIn" },
+              { icon: Twitter, href: "https://x.com/amodev", label: "X" },
               { icon: Mail, href: "mailto:aungmyintoo.david@gmail.com", label: "Email" },
             ].map(({ icon: Icon, href, label }) => (
               <a

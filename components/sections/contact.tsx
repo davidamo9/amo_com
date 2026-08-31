@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Linkedin, Github, Phone, Send, CheckCircle, XCircle } from "lucide-react";
+import { Mail, Linkedin, Github, Phone, Send, CheckCircle, XCircle, Twitter } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { track } from "@/lib/analytics";
 
@@ -178,6 +178,23 @@ export function Contact() {
                         className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
                       >
                         linkedin.com/in/aung-myint-oo99
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                      <Twitter className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div>
+                      <p className="font-medium font-body mb-1">X</p>
+                      <a
+                        href="https://x.com/amodev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
+                      >
+                        x.com/amodev
                       </a>
                     </div>
                   </div>
