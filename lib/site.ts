@@ -12,7 +12,7 @@ export const NAME = "Aung Myint Oo";
 export const DESCRIPTOR =
   "AI & robotics engineer in Singapore building perception, agents, and learning systems that compound over time.";
 export const TITLE = "Aung Myint Oo - AI & Robotics Engineer in Singapore | Founding Engineer";
-export const DESCRIPTION = `${DESCRIPTOR} Founding engineer at Salesbugle, taking AI products from idea to production, end to end. NUS MSc Robotics.`;
+export const DESCRIPTION = `${DESCRIPTOR} Founding engineer at Salesbugle.`;
 
 export const LINKS = {
   github: "https://github.com/davidamo9",

@@ -6,7 +6,8 @@ import { Footer } from "@/components/sections/footer";
 import { CONTENT_UPDATED, DESCRIPTOR, LINKS, PERSON_ID, SITE_URL } from "@/lib/site";
 
 const ABOUT_TITLE = "About Aung Myint Oo - AI & Robotics Engineer in Singapore";
-const ABOUT_DESCRIPTION = `${DESCRIPTOR} Founding engineer at Salesbugle, formerly robotics and vision engineer at Mozark, NUS MSc Robotics.`;
+const ABOUT_DESCRIPTION =
+  "The full story of Aung Myint Oo: robotics and perception at Mozark, founding engineer at Salesbugle, NUS MSc Robotics, and learning systems that compound.";
 
 export const metadata: Metadata = {
   title: { absolute: ABOUT_TITLE },
