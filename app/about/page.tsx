@@ -26,35 +26,35 @@ export const metadata: Metadata = {
 
 const timeline = [
   {
-    period: "Oct 2025 – present",
+    period: "Oct 2025 - present",
     role: "Founding Engineer & Technical Lead",
     org: "Salesbugle, Singapore",
     detail:
       "AI sales coaching SaaS, built from an empty repository to production with paying customers as the sole engineer.",
   },
   {
-    period: "2026 – present",
+    period: "2026 - present",
     role: "Founding AI Architect (contract)",
     org: "Climate-tech intelligence platform, United States",
     detail:
       "Architecture and end-to-end MVP: sensor ingestion, time-series processing, anomaly detection, analytics. Shipped solo.",
   },
   {
-    period: "Aug 2023 – Sep 2025",
+    period: "Aug 2023 - Sep 2025",
     role: "Robotics & Vision Engineer",
     org: "Mozark, Singapore",
     detail:
       "Led development of robotic mobile-device testing systems deployed in Singapore, Philippines, Thailand, and India.",
   },
   {
-    period: "2023 – 2026",
+    period: "2023 - 2026",
     role: "MSc Robotics (part-time)",
     org: "National University of Singapore",
     detail:
       "Thesis: natural-language control of a robot interacting with mobile devices through computer vision.",
   },
   {
-    period: "2019 – 2023",
+    period: "2019 - 2023",
     role: "B.Eng Electrical Engineering (Honours)",
     org: "Specialisation in Robotics; second major in Innovation & Design",
     detail:
