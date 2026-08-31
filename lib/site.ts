@@ -17,7 +17,6 @@ export const DESCRIPTION = `${DESCRIPTOR} Founding engineer at Salesbugle.`;
 export const LINKS = {
   github: "https://github.com/davidamo9",
   linkedin: "https://www.linkedin.com/in/aung-myint-oo99/",
-  x: "https://x.com/amodev",
   email: "aungmyintoo.david@gmail.com",
   salesbugle: "https://salesbugle.com",
   optics: "https://github.com/davidamo9/optics-framework-public",

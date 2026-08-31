@@ -9,11 +9,11 @@
 - Builder of amoOS, a personal AI operating system and software factory: a fleet of AI coding agents does the building across 11 projects while he plans, dispatches, and verifies; every lesson is compiled into a 400+ page knowledge base that agents load as context for the next task, so capability compounds over time.
 - Author of Optics Framework, an open-source no-code test automation framework on PyPI that unifies Appium, computer vision, and Delta robot arms with an agentic LLM layer (https://github.com/davidamo9/optics-framework-public).
 - MSc Robotics (National University of Singapore, 2023-2026; thesis: natural-language control of a robot interacting with mobile devices through computer vision). B.Eng Electrical Engineering (Honours), specialisation in Robotics, second major in Innovation & Design.
-- Based in Singapore. Also known as AMO. On X at https://x.com/amodev (@amodev).
+- Based in Singapore. Also known as AMO.
 
 ## Disambiguation
 
-Several people share the name Aung Myint Oo, including a general surgeon in Singapore and public figures in Myanmar. This site, https://github.com/davidamo9, https://www.linkedin.com/in/aung-myint-oo99/, and https://x.com/amodev all refer to the AI and robotics engineer described here.
+Several people share the name Aung Myint Oo, including a general surgeon in Singapore and public figures in Myanmar. This site, https://github.com/davidamo9, and https://www.linkedin.com/in/aung-myint-oo99/ all refer to the AI and robotics engineer described here.
 
 ## What he solves
 

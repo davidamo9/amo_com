@@ -211,8 +211,7 @@ export default function AboutPage() {
               Several people share the name Aung Myint Oo, including a general surgeon in Singapore
               and public figures in Myanmar. This site,{" "}
               <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">github.com/davidamo9</a>, and{" "}
-              <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">linkedin.com/in/aung-myint-oo99</a>, and{" "}
-              <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">x.com/amodev</a>{" "}
+              <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">linkedin.com/in/aung-myint-oo99</a>{" "}
               all refer to the engineer described on this page. I also go by AMO.
             </p>
 
