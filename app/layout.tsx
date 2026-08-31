@@ -111,7 +111,7 @@ export default function RootLayout({
     alternateName: ["AMO"],
     url: SITE_URL,
     mainEntityOfPage: `${SITE_URL}/about`,
-    sameAs: [LINKS.github, LINKS.linkedin],
+    sameAs: [LINKS.github, LINKS.linkedin, LINKS.x, "https://twitter.com/amodev"],
     jobTitle: ["AI & Robotics Engineer", "Founding Engineer & Technical Lead"],
     description: DESCRIPTION,
     disambiguatingDescription:
