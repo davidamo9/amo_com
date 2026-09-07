@@ -103,6 +103,10 @@ export function Hero() {
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="group p-3 rounded-full border border-border hover:border-orange-500/50 text-muted-foreground hover:text-orange-500 transition-all duration-300"
                 aria-label={label}
+                onClick={() => {
+                  // Outbound clicks are captured by GA4 enhanced measurement; mailto is not
+                  if (href.startsWith("mailto:")) track("email_click", { placement: "hero" });
+                }}
               >
                 <Icon className="h-5 w-5" />
               </a>

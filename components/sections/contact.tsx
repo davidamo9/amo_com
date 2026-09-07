@@ -126,6 +126,7 @@ export function Contact() {
                       <p className="font-medium font-body mb-1">Email</p>
                       <a
                         href="mailto:aungmyintoo.david@gmail.com"
+                        onClick={() => track("email_click", { placement: "contact" })}
                         className="text-muted-foreground hover:text-orange-500 transition-colors duration-300 font-body animated-underline"
                       >
                         aungmyintoo.david@gmail.com
@@ -323,7 +324,7 @@ export function Contact() {
                 {status === "error" && (
                   <p className="text-sm text-red-500 text-center font-body">
                     {errorMessage || "Something went wrong."} You can also{" "}
-                    <a href="mailto:aungmyintoo.david@gmail.com" className="underline hover:text-red-400">email me directly</a>.
+                    <a href="mailto:aungmyintoo.david@gmail.com" onClick={() => track("email_click", { placement: "contact_error" })} className="underline hover:text-red-400">email me directly</a>.
                   </p>
                 )}
               </form>
