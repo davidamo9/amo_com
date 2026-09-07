@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTag } from "@/components/analytics/GoogleTag";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -268,7 +268,7 @@ export default function RootLayout({
             {children}
           </SmoothScrollProvider>
         </ThemeProvider>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? "G-EK3N131XRB"} />
+        <GoogleTag />
       </body>
     </html>
   );
