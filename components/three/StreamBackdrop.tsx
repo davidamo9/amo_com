@@ -118,8 +118,32 @@ export function StreamBackdrop() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [webglFailed, setWebglFailed] = useState(false);
 
+  // Creating a WebGL context can stall the first frame (Lighthouse observed a
+  // 2.4s first paint with it, 0.1s without), so the static glow renders first
+  // and the canvas mounts only once the page has painted and the browser is idle.
   useEffect(() => {
-    setMounted(true);
+    let idle = 0;
+    let frame = 0;
+    const armAfterPaint = () => {
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => setMounted(true));
+      });
+    };
+    // Safari has no requestIdleCallback
+    const hasIdleCallback = typeof window.requestIdleCallback === "function";
+    if (hasIdleCallback) {
+      idle = window.requestIdleCallback(armAfterPaint, { timeout: 2000 });
+    } else {
+      idle = window.setTimeout(armAfterPaint, 500);
+    }
+    return () => {
+      if (hasIdleCallback) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(query.matches);
     const handleChange = (event: MediaQueryListEvent) => setReducedMotion(event.matches);
@@ -244,7 +268,7 @@ export function StreamBackdrop() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 -z-10 mix-blend-screen pointer-events-none opacity-50"
+      className="fixed inset-0 -z-10 mix-blend-screen pointer-events-none animate-backdrop-in"
       aria-hidden="true"
     >
       <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />
