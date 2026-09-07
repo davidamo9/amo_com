@@ -32,3 +32,15 @@ export const GA_COLLECT_URL = "https://www.google-analytics.com/g/collect";
 
 /** Hosts whose _ga cookies are refreshed with the apex domain attribute. */
 export const COOKIE_DOMAIN = "aungmyintoo.com";
+
+/**
+ * Consent Mode v2. Visitors in these regions start with analytics denied and
+ * see a notice; everyone else starts granted. Stored choice key below.
+ */
+export const CONSENT_REGIONS = [
+  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE",
+  "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+  "IS", "LI", "NO", "GB", "CH",
+] as const;
+
+export const CONSENT_STORAGE_KEY = "amo_consent";
