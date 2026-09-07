@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { COOKIE_DOMAIN, GA_COLLECT_URL } from "@/lib/analytics";
+import { COOKIE_DOMAIN, GA_COLLECT_URL, GA_ID } from "@/lib/analytics";
 
 export const dynamic = "force-dynamic";
 
 /** 400 days, the longest lifetime Chrome and Safari accept for a cookie. */
 const COOKIE_MAX_AGE_SECONDS = 400 * 24 * 60 * 60;
+
+/** GA4 batches at most a few events per request; anything larger is not gtag. */
+const MAX_BODY_BYTES = 64 * 1024;
+
+/** Only the shapes gtag produces: "GA1.1.123.456", "GS2.1.s123$o1$g0$t123$j0$l0$h0". */
+const COOKIE_NAME = /^_ga(_[A-Z0-9]{4,20})?$/;
+const COOKIE_VALUE = /^[A-Za-z0-9.$-]{1,200}$/;
 
 /** Request headers GA4 reads to classify browser, device, and language. */
 const FORWARDED_HEADERS = [
@@ -21,13 +28,12 @@ const FORWARDED_HEADERS = [
   "sec-ch-ua-wow64",
 ];
 
+/** Vercel sets x-real-ip from the connection; x-forwarded-for is the fallback. */
 function clientIp(request: NextRequest): string | null {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    const first = forwardedFor.split(",")[0]?.trim();
-    if (first) return first;
-  }
-  return request.headers.get("x-real-ip");
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+  const first = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return first || null;
 }
 
 /** Raw cookie pairs; GA4 cookie values contain "$" and must not be re-encoded. */
@@ -41,7 +47,7 @@ function analyticsCookies(request: NextRequest): Array<[string, string]> {
     if (separator === -1) continue;
     const name = part.slice(0, separator).trim();
     const value = part.slice(separator + 1).trim();
-    if (name === "_ga" || name.startsWith("_ga_")) pairs.push([name, value]);
+    if (COOKIE_NAME.test(name) && COOKIE_VALUE.test(value)) pairs.push([name, value]);
   }
   return pairs;
 }
@@ -53,6 +59,10 @@ function cookieDomainFor(host: string | null): string | null {
   return null;
 }
 
+function reject(status: number): NextResponse {
+  return new NextResponse(null, { status, headers: { "Cache-Control": "no-store" } });
+}
+
 /**
  * Forwards a gtag hit to GA4 with the visitor's IP and browser headers, then
  * re-emits the _ga cookies over HTTP. Safari caps JavaScript-set cookies at
@@ -60,6 +70,17 @@ function cookieDomainFor(host: string | null): string | null {
  * the full 400 days.
  */
 async function forward(request: NextRequest): Promise<NextResponse> {
+  // Only relay hits for this site's property, so the route is not an open proxy.
+  if (request.nextUrl.searchParams.get("tid") !== GA_ID) return reject(400);
+
+  let body: string | undefined;
+  if (request.method === "POST") {
+    const declared = Number(request.headers.get("content-length") ?? 0);
+    if (declared > MAX_BODY_BYTES) return reject(413);
+    body = await request.text();
+    if (body.length > MAX_BODY_BYTES) return reject(413);
+  }
+
   const upstreamUrl = new URL(GA_COLLECT_URL);
   upstreamUrl.search = request.nextUrl.search;
 
@@ -71,18 +92,22 @@ async function forward(request: NextRequest): Promise<NextResponse> {
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
-
-  const body = request.method === "POST" ? await request.text() : undefined;
   if (body !== undefined) headers.set("Content-Type", "text/plain;charset=UTF-8");
 
-  const upstream = await fetch(upstreamUrl, {
-    method: request.method,
-    headers,
-    body,
-    cache: "no-store",
-  });
+  let upstreamStatus: number;
+  try {
+    const upstream = await fetch(upstreamUrl, {
+      method: request.method,
+      headers,
+      body,
+      cache: "no-store",
+    });
+    upstreamStatus = upstream.ok ? 204 : upstream.status;
+  } catch {
+    return reject(502);
+  }
 
-  const response = new NextResponse(null, { status: upstream.ok ? 204 : upstream.status });
+  const response = new NextResponse(null, { status: upstreamStatus });
   response.headers.set("Cache-Control", "no-store");
 
   const domain = cookieDomainFor(request.headers.get("host"));
