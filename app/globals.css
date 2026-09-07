@@ -224,6 +224,25 @@ html {
   }
 }
 
+/* ===== HERO ENTRANCE =====
+   CSS-driven so the hero paints at first render instead of waiting for
+   hydration; the LCP paragraph used to sit at opacity 0 until JS ran. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-enter {
+  animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--enter-delay, 0s);
+}
+
 /* ===== REDUCED MOTION SUPPORT ===== */
 @media (prefers-reduced-motion: reduce) {
   .shimmer-hover::before {
@@ -232,7 +251,8 @@ html {
 
   .animate-float,
   .animate-pulse-slow,
-  .grain-animated {
+  .grain-animated,
+  .hero-enter {
     animation: none;
   }
 }

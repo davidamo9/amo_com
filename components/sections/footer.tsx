@@ -77,7 +77,7 @@ export function Footer() {
             <p className="text-muted-foreground font-body text-sm">
               &copy; {currentYear} Aung Myint Oo. All rights reserved.
             </p>
-            <p className="text-muted-foreground/60 font-body text-sm">
+            <p className="text-muted-foreground font-body text-sm">
               Designed & built with precision
             </p>
           </div>

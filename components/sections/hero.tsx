@@ -1,10 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { ArrowDown, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { track } from "@/lib/analytics";
+
+/** Entrance delays in seconds; each element paints via CSS, no hydration needed. */
+const enterAt = (seconds: number) => ({ "--enter-delay": `${seconds}s` } as CSSProperties);
 
 export function Hero() {
   return (
@@ -17,57 +21,42 @@ export function Hero() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl">
           {/* Tagline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8"
-          >
+          <div className="hero-enter mb-8" style={enterAt(0.1)}>
             <span className="inline-block px-5 py-2.5 border border-orange-500/30 rounded-full text-sm tracking-[0.2em] uppercase font-body">
               <span className="text-foreground font-semibold">Aung Myint Oo</span>
               <span className="text-orange-500"> · AI &amp; Robotics Engineer · Founding Engineer</span>
             </span>
-          </motion.div>
+          </div>
 
           {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <h1
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1]"
           >
-            <TextReveal className="block text-foreground" delay={0.5}>
+            <TextReveal className="block text-foreground" delay={0.3}>
               AI &amp; robotics engineer
             </TextReveal>{" "}
-            <TextReveal className="block text-foreground" delay={0.8}>
+            <TextReveal className="block text-foreground" delay={0.55}>
               in Singapore. Idea to production,
             </TextReveal>{" "}
-            <TextReveal className="block text-orange-500" delay={1.1}>
+            <TextReveal className="block text-orange-500" delay={0.8}>
               end to end.
             </TextReveal>
-          </motion.h1>
+          </h1>
 
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
+          <p
+            className="hero-enter text-lg md:text-xl text-muted-foreground mb-12 font-body max-w-2xl"
+            style={enterAt(0.9)}
           >
             I build perception, agents, and learning systems that compound over time. You bring
             the problem: an idea you can&apos;t build, a workflow stuck in the past, a venture that
             needs its technical half. I take it from first conversation to production, and run it
             after. Currently building at{" "}
             <a href="https://app.salesbugle.com/whats-new" target="_blank" rel="noopener noreferrer" onClick={() => track("salesbugle_outbound", { placement: "hero" })} className="text-orange-500 hover:text-orange-400 transition-colors">Salesbugle</a>.
-          </motion.p>
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            className="flex flex-wrap items-center gap-4 mb-16"
-          >
+          <div className="hero-enter flex flex-wrap items-center gap-4 mb-16" style={enterAt(1.1)}>
             <MagneticButton>
               <a
                 href="#ventures"
@@ -97,15 +86,10 @@ export function Hero() {
               </span>
               watch my AI fleet ship code
             </a>
-          </motion.div>
+          </div>
 
           {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
-            className="flex items-center gap-4"
-          >
+          <div className="hero-enter flex items-center gap-4" style={enterAt(1.3)}>
             {[
               { icon: Github, href: "https://github.com/davidamo9", label: "GitHub" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/aung-myint-oo99/", label: "LinkedIn" },
@@ -123,17 +107,12 @@ export function Hero() {
                 <Icon className="h-5 w-5" />
               </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
+      <div className="hero-enter absolute bottom-10 left-1/2 -translate-x-1/2" style={enterAt(1.5)}>
         <a
           href="#what-i-do"
           className="flex flex-col items-center gap-3 text-muted-foreground hover:text-orange-500 transition-colors duration-300"
@@ -146,7 +125,7 @@ export function Hero() {
             <ArrowDown className="h-4 w-4" />
           </motion.div>
         </a>
-      </motion.div>
+      </div>
 
     </section>
   );
