@@ -47,6 +47,8 @@ export function TextReveal({
       .join("<span class='inline-block'>&nbsp;</span>");
 
     const chars = element.querySelectorAll(":scope > span > span");
+    // Characters start hidden, so the wrapper can become visible now
+    element.classList.remove("opacity-0");
 
     const animation = {
       opacity: 1,
@@ -82,7 +84,7 @@ export function TextReveal({
   return (
     <Component
       ref={textRef as React.RefObject<HTMLHeadingElement & HTMLSpanElement & HTMLParagraphElement & HTMLDivElement>}
-      className={className}
+      className={`opacity-0 ${className}`}
     >
       {children}
     </Component>

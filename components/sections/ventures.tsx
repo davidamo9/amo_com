@@ -107,6 +107,7 @@ export function Ventures() {
                           rel="noopener noreferrer"
                           onClick={() => track("salesbugle_outbound", { placement: "ventures" })}
                           className="text-muted-foreground hover:text-orange-500 transition-colors"
+                          aria-label={`Open ${venture.company} (opens in a new tab)`}
                         >
                           <ExternalLink className="h-5 w-5" />
                         </a>
