@@ -243,6 +243,20 @@ html {
   animation-delay: var(--enter-delay, 0s);
 }
 
+/* WebGL backdrop fades in once it mounts after first paint (resting opacity 0.5). */
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.animate-backdrop-in {
+  animation: backdrop-in 1.2s ease-out both;
+}
+
 /* ===== REDUCED MOTION SUPPORT ===== */
 @media (prefers-reduced-motion: reduce) {
   .shimmer-hover::before {
@@ -254,5 +268,10 @@ html {
   .grain-animated,
   .hero-enter {
     animation: none;
+  }
+
+  .animate-backdrop-in {
+    animation: none;
+    opacity: 0.5;
   }
 }
