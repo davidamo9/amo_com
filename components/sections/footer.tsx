@@ -1,6 +1,7 @@
 "use client";
 
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -62,6 +63,9 @@ export function Footer() {
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="p-3 rounded-xl bg-card border border-border hover:border-orange-500/20 text-muted-foreground hover:text-orange-500 transition-all duration-300"
                   aria-label={label}
+                  onClick={() => {
+                    if (href.startsWith("mailto:")) track("email_click", { placement: "footer" });
+                  }}
                 >
                   <Icon className="h-5 w-5" />
                 </a>
