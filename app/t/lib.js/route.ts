@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { GTAG_SCRIPT_URL } from "@/lib/analytics";
 
+export const runtime = "edge";
+
 function unavailable(): NextResponse {
   return new NextResponse("", { status: 502, headers: { "Cache-Control": "no-store" } });
 }

@@ -5,8 +5,8 @@ import { CONSENT_STORAGE_KEY, TRACKING_PATH } from "@/lib/analytics";
 
 type Choice = "granted" | "denied";
 
-interface WindowWithGtag extends Window {
-  gtag?: (...args: unknown[]) => void;
+interface WindowWithDataLayer extends Window {
+  dataLayer?: unknown[];
 }
 
 function readChoice(): Choice | null {
@@ -18,8 +18,20 @@ function readChoice(): Choice | null {
   }
 }
 
+/**
+ * Same as calling gtag(): push the arguments object onto the data layer.
+ * Going through the data layer instead of window.gtag means the update is
+ * queued even if it arrives before the inline bootstrap or gtag.js has run.
+ */
+function gtag(..._args: unknown[]): void {
+  const target = window as WindowWithDataLayer;
+  target.dataLayer = target.dataLayer ?? [];
+  // eslint-disable-next-line prefer-rest-params
+  target.dataLayer.push(arguments);
+}
+
 function grantAnalytics() {
-  (window as WindowWithGtag).gtag?.("consent", "update", { analytics_storage: "granted" });
+  gtag("consent", "update", { analytics_storage: "granted" });
 }
 
 /**

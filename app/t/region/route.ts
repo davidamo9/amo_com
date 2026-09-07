@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CONSENT_REGIONS } from "@/lib/analytics";
 
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 const REGIONS: ReadonlySet<string> = new Set(CONSENT_REGIONS);

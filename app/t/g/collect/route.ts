@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_DOMAIN, GA_COLLECT_URL, GA_ID } from "@/lib/analytics";
 
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 /** 400 days, the longest lifetime Chrome and Safari accept for a cookie. */
