@@ -1,3 +1,5 @@
+import { LINKS } from "@/lib/site";
+
 export interface Project {
   id: string;
   title: string;
@@ -57,6 +59,7 @@ export const projects: Project[] = [
       },
     ],
     artifacts: [
+      { type: "demo", label: "amoOS Website", url: LINKS.amoos },
       { type: "docs", label: "Build Log", url: "/notes/personal-software-factory" },
       { type: "docs", label: "amoOS MCP Case Study", url: "/amoos-mcp" },
     ],
@@ -107,6 +110,7 @@ export const projects: Project[] = [
       },
     ],
     artifacts: [
+      { type: "demo", label: "amoOS Website", url: LINKS.amoos },
       { type: "docs", label: "amoOS Case Study", url: "/amoos" },
       { type: "docs", label: "Build Log", url: "/notes/personal-software-factory" },
     ],

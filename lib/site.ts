@@ -21,9 +21,10 @@ export const LINKS = {
   email: "aungmyintoo.david@gmail.com",
   salesbugle: "https://salesbugle.com",
   optics: "https://github.com/davidamo9/optics-framework-public",
+  amoos: "https://aungmyintoo.dev/amoOS/",
 } as const;
 
 /** Last substantive edit to the home page, about page, and llms.txt (ISO date). */
-export const CONTENT_UPDATED = "2026-08-30";
+export const CONTENT_UPDATED = "2026-10-06";
 /** Last substantive edit to lib/projects.ts (ISO date). */
-export const PROJECTS_UPDATED = "2026-08-23";
+export const PROJECTS_UPDATED = "2026-10-06";

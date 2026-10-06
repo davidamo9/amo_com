@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { track } from "@/lib/analytics";
+import { LINKS } from "@/lib/site";
 
 /**
  * A condensed replay of a real amoOS dispatch (the HubSpot email sync task
@@ -141,6 +142,17 @@ export function Factory() {
                 Bring me your problem
                 <ArrowRight className="h-4 w-4" />
               </a>
+              <p className="mt-5 text-sm font-body">
+                <a
+                  href={LINKS.amoos}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("amoos_site_click", { location: "factory" })}
+                  className="text-muted-foreground hover:text-orange-500 transition-colors"
+                >
+                  See how amoOS works at aungmyintoo.dev
+                </a>
+              </p>
             </div>
           </div>
         </motion.div>

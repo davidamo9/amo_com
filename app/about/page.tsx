@@ -160,7 +160,9 @@ export default function AboutPage() {
             <h2 className={headingClass}>Learning systems that compound over time</h2>
             <p className={bodyClass}>
               The question I keep building around is how a system gets better from its own
-              experience instead of starting from zero every session. amoOS is my working answer: a
+              experience instead of starting from zero every session.{" "}
+              <a href={LINKS.amoos} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-400 transition-colors">amoOS</a>{" "}
+              is my working answer: a
               personal AI operating system where a fleet of AI coding agents does the building across
               eleven projects while I plan, dispatch, and verify. Every session, decision, and lesson
               is distilled into a compiled knowledge base, currently over four hundred pages, that
