@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Attribution } from "@/components/analytics/Attribution";
 import { ConsentNotice } from "@/components/analytics/ConsentNotice";
 import { GoogleTag } from "@/components/analytics/GoogleTag";
 import { Inter, Space_Grotesk } from "next/font/google";
@@ -272,6 +273,7 @@ export default function RootLayout({
         </ThemeProvider>
         <GoogleTag />
         <ConsentNotice />
+        <Attribution />
         <SpeedInsights />
       </body>
     </html>

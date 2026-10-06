@@ -27,7 +27,9 @@ stay out of `/t/`.
 | `app/t/lib.js/route.ts` | Script proxy |
 | `app/t/g/collect/route.ts` | Hit proxy and cookie refresh |
 | `app/t/region/route.ts` | Country lookup for consent |
-| `app/layout.tsx` | Mounts `GoogleTag`, `ConsentNotice`, and `SpeedInsights` |
+| `lib/attribution.ts` | First-touch capture (referrer host, landing path, UTM tags) and the AI assistant referrer list |
+| `components/analytics/Attribution.tsx` | Captures the first touch on load and fires `ai_referral` |
+| `app/layout.tsx` | Mounts `GoogleTag`, `ConsentNotice`, `Attribution`, and `SpeedInsights` |
 
 ## Why first-party
 
@@ -53,6 +55,22 @@ keeps the cookieless default, and either choice is stored in `localStorage` unde
 gtag's own `region` list is not used. Google geolocates `gtag.js` when it is fetched,
 and the proxy fetches it from Vercel's server, so every visitor would look like they are
 wherever that server is.
+
+## Attribution
+
+GA4 cannot say how one particular person found the site, so the contact form says it
+instead. On the first page of a session, `Attribution` stores the referrer host (or
+`direct`), the landing path, and any `utm_source`, `utm_medium`, and `utm_campaign` in
+`sessionStorage` under `amo_first_touch`. Nothing leaves the browser until the visitor
+submits the contact form, which sends it as `source`; the email then shows a "How they
+found the site" list. It is not stored in the database.
+
+When the referrer is an AI assistant (ChatGPT, Perplexity, Claude, Gemini, Copilot,
+DeepSeek), or ChatGPT's `utm_source=chatgpt.com` tag is present, `Attribution` fires
+`ai_referral` with an `assistant` parameter once gtag has loaded.
+
+Tag links you post elsewhere so they show up by name, for example
+`https://aungmyintoo.com/?utm_source=linkedin&utm_medium=profile`.
 
 ## Environment
 
@@ -92,3 +110,4 @@ they only act on requests gtag makes.
 
 - 2026-09-08: first-party proxy, cookie refresh, Consent Mode v2, Edge runtime, page
   speed pass (home mobile Lighthouse 62 to 95). amoOS sprint 122.
+- 2026-10-06: first-touch attribution on contact emails and the `ai_referral` event.
