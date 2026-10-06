@@ -40,10 +40,24 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#39;');
 }
 
+const SOURCE_FIELDS = ['referrer', 'landing', 'utm_source', 'utm_medium', 'utm_campaign'] as const;
+
+// First-touch attribution sent by the form (lib/attribution.ts). Optional and
+// untrusted: keep known string fields only, trimmed to a sane length.
+function sourceRows(source: unknown): string {
+  if (!source || typeof source !== 'object') return '';
+  const rows = SOURCE_FIELDS.flatMap((field) => {
+    const value = (source as Record<string, unknown>)[field];
+    if (typeof value !== 'string' || !value) return [];
+    return [`<li><strong>${field}:</strong> ${escapeHtml(value.slice(0, 200))}</li>`];
+  });
+  return rows.length ? `<p><strong>How they found the site:</strong></p><ul>${rows.join('')}</ul>` : '';
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message, website } = body;
+    const { name, email, message, website, source } = body;
 
     // Honeypot: bots fill the hidden "website" field, humans don't
     if (website) {
@@ -119,6 +133,7 @@ export async function POST(request: NextRequest) {
             <p><strong>Email:</strong> ${safeEmail}</p>
             <p><strong>Message:</strong></p>
             <p>${safeMessage.replace(/\n/g, '<br>')}</p>
+            ${sourceRows(source)}
             <hr>
             <p><small>Submission ID: ${submissionId}</small></p>
             <p><small>Sent from aungmyintoo.com contact form</small></p>

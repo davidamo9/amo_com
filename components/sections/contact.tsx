@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Mail, Linkedin, Github, Phone, Send, CheckCircle, XCircle, Twitter } from "lucide-react";
 import { MagneticButton } from "@/components/animations/MagneticButton";
 import { track } from "@/lib/analytics";
+import { getFirstTouch } from "@/lib/attribution";
 
 export function Contact() {
   const ref = useRef(null);
@@ -29,7 +30,7 @@ export function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, source: getFirstTouch() }),
       });
 
       if (response.ok) {
